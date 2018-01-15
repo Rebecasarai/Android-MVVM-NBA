@@ -20,7 +20,7 @@ public class AddTeamActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_team);
+        setContentView(R.layout.addteam_activity);
 
         // Get a reference to the ViewModel
         mTeamVM = ViewModelProviders.of(this).get(TeamInfoWithAllTeamsViewModel.class);
@@ -28,22 +28,16 @@ public class AddTeamActivity extends AppCompatActivity {
         mAppDb = AppDatabase.getAppDatabase(getApplicationContext());
         mTeams = mAppDb.teamDao().getAll();
 
+
         //Spinner
+        /*
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.stadiums_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        spinner.setAdapter(adapter);*/
         //End of spinner
 
 
-    }
-
-    private ArrayList<Integer> getStadiums(){
-        ArrayList<Integer> stadiums = new ArrayList<>();
-        for (int i= 0; i< mTeams.size(); i++){
-            stadiums.add(mTeams.get(i).getIdStadium());
-        }
-        return stadiums;
     }
 }

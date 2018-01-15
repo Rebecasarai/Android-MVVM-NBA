@@ -19,8 +19,7 @@ public class Team  {
     private int imageLogo;
     private int idStadium;
 
-    public Team( int idTeam, String name, String description, int imageLogo, int idStadium) {
-        this.idTeam = idTeam;
+    public Team(String name, String description, int imageLogo, int idStadium) {
         this.name = name;
         this.description = description;
         this.imageLogo = imageLogo;
