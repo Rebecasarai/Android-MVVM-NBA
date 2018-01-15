@@ -1,5 +1,7 @@
 package com.rebecasarai.room.DAO;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.arch.persistence.room.*;
 
 import com.rebecasarai.room.models.Team;
@@ -16,6 +18,9 @@ import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
 public interface TeamDao {
     @Query("SELECT * FROM teams")
     List<Team> getAll();
+
+    @Query("SELECT * FROM teams")
+    LiveData<List<Team>> getAllLive();
 
     @Query("SELECT * FROM teams WHERE idTeam IN (:teamsIds)")
     List<Team> loadAllByIds(int[] teamsIds);

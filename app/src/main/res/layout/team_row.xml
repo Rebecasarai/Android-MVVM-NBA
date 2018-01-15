@@ -18,17 +18,16 @@
 
     <TextView
         android:id="@+id/secondLine"
-        android:layout_width="fill_parent"
-        android:layout_height="26dip"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/icon"
         android:text="Description"
         android:textSize="12sp" />
 
     <TextView
         android:id="@+id/firstLine"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/secondLine"
         android:layout_alignParentRight="true"
@@ -42,16 +41,15 @@
 
     <TextView
         android:id="@+id/third"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/secondLine"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignWithParentIfMissing="true"
-        android:layout_toRightOf="@id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_toRightOf="@id/secondLine"
+        android:layout_below="@id/firstLine"
+
         android:gravity="center_vertical"
-        android:text="Example application"
-        android:textSize="16sp" />
+        android:layout_marginLeft="20dp"
+        android:text="Stadium"
+        android:textSize="10sp" />
 
 </RelativeLayout>
 

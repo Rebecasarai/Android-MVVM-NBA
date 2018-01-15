@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Room</string>
+    <string name="addTeam">Add Team</string>
+    <string name="help">Help</string>
 </resources>

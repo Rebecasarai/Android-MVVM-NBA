@@ -1,6 +1,9 @@
 package com.rebecasarai.room;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -9,6 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -17,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.rebecasarai.room.ViewModels.TeamInfoWithAllTeamsViewModel;
 import com.rebecasarai.room.models.Team;
 
 import java.util.ArrayList;
@@ -29,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private AppDatabase mAppDb;
     private TextView mText;
     private List<Team> mTeams;
+    private Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,23 +46,53 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mText = findViewById(R.id.text);
         mAppDb = AppDatabase.getAppDatabase(getApplicationContext());
 
-        mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi,1));
-        mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi,1));
-        mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi,1));
-        mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi,1));
-        mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi,1));
-        mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi,1));
+        TeamInfoWithAllTeamsViewModel mViewModel = ViewModelProviders.of(this).get(TeamInfoWithAllTeamsViewModel.class);
 
-        Log.v("teams: ", mAppDb.teamDao().getAll().toString());
-        mTeams = mAppDb.teamDao().getAll();
+        mViewModel.mTeams.observe(this, new Observer<List<Team>>() {
+                    @Override
+                    public void onChanged(@Nullable List<Team> teams) {
+                        TeamAdapter a = new TeamAdapter<Object>(getApplication(), R.layout.team_row, R.id.firstLine, mTeams);
+                        mList.setAdapter(a);
 
-        TeamAdapter a = new TeamAdapter<Object>(this,R.layout.team_row, R.id.firstLine, mTeams);
-        mList.setAdapter(a);
+                    }
+                });
+
+
+
         mList.setOnItemClickListener(this);
+
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.add_team:
+                i= new Intent(this, AddTeamActivity.class);
+                startActivity(i);
+
+                return true;
+            case R.id.help:
+                showHelp();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void showHelp(){
 
     }
 
