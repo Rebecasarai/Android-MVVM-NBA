@@ -19,7 +19,9 @@ public class TeamInfoWithAllTeamsViewModel extends AndroidViewModel {
 
     public final LiveData<List<Team>> mTeams;
 
-    public AppDatabase mAppDb;
+    private AppDatabase mAppDb;
+
+    private LiveData<Team> team;
 
     public TeamInfoWithAllTeamsViewModel(Application application) {
         super(application);
@@ -30,4 +32,7 @@ public class TeamInfoWithAllTeamsViewModel extends AndroidViewModel {
         mTeams = mAppDb.teamDao().getAllLive();
     }
 
+    public LiveData<Team> getTeam() {
+        return team;
+    }
 }

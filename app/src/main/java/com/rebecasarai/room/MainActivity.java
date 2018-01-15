@@ -32,6 +32,7 @@ import android.widget.Toast;
 import android.view.ContextMenu.ContextMenuInfo;
 
 import com.rebecasarai.room.ViewModels.TeamInfoWithAllTeamsViewModel;
+import com.rebecasarai.room.Views.TeamAdaptera;
 import com.rebecasarai.room.models.Team;
 
 import java.util.ArrayList;
@@ -44,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Intent i;
     TeamInfoWithAllTeamsViewModel mViewModel;
     TeamAdapter a;
-    private ArrayList<String> listItems;
     public AppDatabase mAppDb;
     int position;
     int index;
@@ -94,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         /*Funciona super bien, sencillo. Solo que probaré de la otra forma
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.context_menu, contextMenu);*/
-
     }
 
     public boolean onContextItemSelected(MenuItem item) {
@@ -110,7 +109,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case R.id.edit:
                 Toast.makeText(getApplicationContext(), ""+index,
                         Toast.LENGTH_LONG).show();
-
                 return true;
 
             case R.id.delete:
@@ -197,8 +195,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public class TeamAdapter extends ArrayAdapter<Team> {
-        public TeamAdapter(Context context, List<Team> users) {
-            super(context, 0, users);
+        public TeamAdapter(Context context, List<Team> teams) {
+            super(context, 0, teams);
         }
 
 
