@@ -3,11 +3,7 @@ package com.rebecasarai.room;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -25,22 +21,20 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import android.view.ContextMenu.ContextMenuInfo;
 
 import com.rebecasarai.room.ViewModels.TeamInfoWithAllTeamsViewModel;
-import com.rebecasarai.room.Views.TeamAdaptera;
 import com.rebecasarai.room.models.Team;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ListView mList;
+    private List<Team> mTeams;
     private TextView mText;
     private Intent i;
     TeamInfoWithAllTeamsViewModel mViewModel;
@@ -48,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public AppDatabase mAppDb;
     int position;
     int index;
+    Team team;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,17 +57,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         mViewModel = ViewModelProviders.of(this).get(TeamInfoWithAllTeamsViewModel.class);
 
+
+        mTeams = mViewModel.getTeams();
+
+
         mViewModel.mTeams.observe(this, new Observer<List<Team>>() {
+
+
             @Override
-            public void onChanged(@NonNull final List<Team> mTeams) {
+            public void onChanged(@NonNull final List<Team> teams) {
 
-                mText.setText(mTeams.get(0).getName());
+                //mText.setText(mTeams.get(0).getName());
 
-                for (int i = 0; i< mTeams.size(); i++){
-                    Log.v("Team: ",mTeams.get(i).getName());
+                for (int i = 0; i< teams.size(); i++){
+                    Log.v("Team: ",teams.get(i).getName());
                 }
-
-                a = new TeamAdapter(getApplicationContext(),mTeams);
+                a = new TeamAdapter(getApplication(),teams);
                 mList.setAdapter(a);
             }
         });
@@ -100,9 +101,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         index = info.position;
 
-        Toast.makeText(getApplicationContext(), ""+index,
-                Toast.LENGTH_LONG).show();
-
+        /*Toast.makeText(getApplicationContext(), ""+index,
+                Toast.LENGTH_LONG).show();*/
 
         //find out which menu item was pressed
         switch (item.getItemId()) {
@@ -112,11 +112,28 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 return true;
 
             case R.id.delete:
-                Toast.makeText(getApplicationContext(), "Delete "+ index,
-                        Toast.LENGTH_LONG).show();
 
-                Team team = mAppDb.teamDao().getTeamById(index+1);
-                mAppDb.teamDao().delete(team);
+                TextView txt = (TextView) findViewById(R.id.third);
+                int num = Integer.parseInt((String) txt.getText());
+
+                for (Team p : mTeams) {
+                    Toast.makeText(getApplicationContext(), "Delete "+ num,
+                            Toast.LENGTH_LONG).show();
+                    if (p.getIdTeam()== num){
+                        Team team = mViewModel.getTeam(num);
+
+                        Toast.makeText(getApplicationContext(), "Delete "+ index,
+                                Toast.LENGTH_LONG).show();
+
+                        mViewModel.delete(p);
+                        break;
+                    }
+                }
+
+
+
+
+
 
                 /*AlertDialog.Builder builder1 = new AlertDialog.Builder(getApplicationContext());
                 builder1.setMessage("Write your message here.");
@@ -152,13 +169,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             default:
                 return false;
         }
-    }
-
-    public void borrarItem(){
-        // continue with delete
-        Team team = mAppDb.teamDao().getTeamById(index+1);
-        mAppDb.teamDao().delete(team);
-
     }
 
     @Override
@@ -206,13 +216,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             ViewHolder holder;
 
             // Get the data item for this position
-            Team team = (Team) getItem(position);
-
+            team = (Team) getItem(position);
             if(row == null){
                 LayoutInflater inflater = getLayoutInflater();
                 //if(getItemViewType(position) == 0){
                     row= inflater.inflate(R.layout.team_row, parent, false);
-                    holder = new ViewHolder( row, R.id.firstLine,R.id.secondLine, R.id.third, R.id.icon);
+                    holder = new ViewHolder( row, R.id.firstLine,R.id.secondLine, R.id.third, R.id.icon, R.id.deleteImage);
                 /*}else{
                     row= inflater.inflate(R.layout.row, parent, false);
                     holder = new ViewHolder (row, R.id.jnombre2, R.id.japellido2, R.id.jcargo2, R.id.jedad2, R.id.jugadorImg2);
@@ -223,10 +232,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             else{
                 holder = (ViewHolder) row.getTag();
             }
-            holder.getNombre().setText(""+team.getName());
-            holder.getApellido().setText(""+team.getDescription());
+            holder.getNombre().setText(team.getName());
+            holder.getApellido().setText(team.getDescription());
             holder.getCargo().setText(""+team.getIdTeam());
             holder.getImg().setImageResource(team.getImageLogo());
+            holder.getDelete().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Team mTeam = mViewModel.getTeam(team.getIdTeam());
+                    mViewModel.delete(mTeam);
+                }
+            });
 
             return (row);
         }
@@ -234,13 +250,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     class ViewHolder {
         TextView nombre, apellido, cargo;
-        ImageView img;
 
-        public ViewHolder(View row, int jnombre, int japellido, int jcargo, int jugadorImg) {
+        ImageView img, delete;
+
+        public ViewHolder(View row, int jnombre, int japellido, int jcargo, int jugadorImg, int delete) {
             this.nombre = (TextView) row.findViewById(jnombre);
             this.apellido = (TextView) row.findViewById(japellido);
             this.cargo = (TextView) row.findViewById(jcargo);
             this.img = (ImageView) row.findViewById(jugadorImg);
+            this.delete = (ImageView) row.findViewById(delete);
+        }
+
+        public ImageView getDelete() {
+            return delete;
+        }
+
+        public void setDelete(ImageView delete) {
+            this.delete = delete;
         }
 
         public TextView getNombre() {

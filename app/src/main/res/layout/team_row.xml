@@ -2,7 +2,7 @@
 
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:padding="6dip" >
 
@@ -27,10 +27,9 @@
 
     <TextView
         android:id="@+id/firstLine"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_above="@id/secondLine"
-        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="true"
         android:layout_toRightOf="@id/icon"
@@ -48,8 +47,17 @@
 
         android:gravity="center_vertical"
         android:layout_marginLeft="20dp"
+
         android:text="Stadium"
         android:textSize="10sp" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/deleteImage"
+        android:layout_toRightOf="@id/firstLine"
+        android:src="@android:drawable/ic_delete"
+        android:layout_margin="10dp"/>
 
 </RelativeLayout>
 

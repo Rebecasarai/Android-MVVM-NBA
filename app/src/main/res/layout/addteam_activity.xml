@@ -33,6 +33,17 @@
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="57dp" />
 
+
+    <EditText
+        android:id="@+id/editDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Good team"
+        tools:layout_editor_absoluteX="95dp"
+        tools:layout_editor_absoluteY="57dp" />
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -47,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
         android:layout_marginTop="160dp"
-        android:text="Button"
+        android:text="Add "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/editNameTeam" />
 
