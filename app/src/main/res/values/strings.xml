@@ -2,5 +2,6 @@
     <string name="app_name">Room</string>
     <string name="addTeam">Add Team</string>
     <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
     <string name="help">Help</string>
 </resources>

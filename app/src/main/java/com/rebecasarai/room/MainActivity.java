@@ -3,11 +3,14 @@ package com.rebecasarai.room;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,13 +41,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private ListView mList;
     private TextView mText;
-    private List<Team> mTeams;
     private Intent i;
     TeamInfoWithAllTeamsViewModel mViewModel;
     TeamAdapter a;
     private ArrayList<String> listItems;
     public AppDatabase mAppDb;
-
+    int position;
+    int index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mText = findViewById(R.id.title);
 
 
-        //mAppDb = AppDatabase.getAppDatabase(this.getApplication());
+        mAppDb = AppDatabase.getAppDatabase(this.getApplication());
 
         mViewModel = ViewModelProviders.of(this).get(TeamInfoWithAllTeamsViewModel.class);
 
@@ -77,29 +81,74 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mList.setOnItemClickListener(this);
     }
 
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
+    public void onCreateContextMenu(ContextMenu contextMenu, View v, ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(contextMenu, v, menuInfo);
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+        position = info.position;
+
+        contextMenu.setHeaderTitle("Opciones de "+position);
+        contextMenu.add(0, R.id.edit, 0, R.string.edit);
+        contextMenu.add(0, R.id.delete, 1, R.string.delete);
+
+        /*Funciona super bien, sencillo. Solo que probaré de la otra forma
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.context_menu, menu);
+        inflater.inflate(R.menu.context_menu, contextMenu);*/
+
     }
 
     public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        index = info.position;
+
+        Toast.makeText(getApplicationContext(), ""+index,
+                Toast.LENGTH_LONG).show();
+
+
         //find out which menu item was pressed
         switch (item.getItemId()) {
             case R.id.edit:
-                Toast.makeText(getApplicationContext(), "This is edit!",
+                Toast.makeText(getApplicationContext(), ""+index,
                         Toast.LENGTH_LONG).show();
 
                 return true;
 
             case R.id.delete:
-                Toast.makeText(getApplicationContext(), "This is edit!",
+                Toast.makeText(getApplicationContext(), "Delete "+ index,
                         Toast.LENGTH_LONG).show();
+
+                Team team = mAppDb.teamDao().getTeamById(index+1);
+                mAppDb.teamDao().delete(team);
+
+                /*AlertDialog.Builder builder1 = new AlertDialog.Builder(getApplicationContext());
+                builder1.setMessage("Write your message here.");
+                builder1.setCancelable(true);
+
+                builder1.setPositiveButton(
+                        "Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();*/
+
+
 
                 return true;
 
-            case R.id.option2:
-                Toast.makeText(getApplicationContext(), "This is my Toast message!",
+            case R.id.help:
+                Toast.makeText(getApplicationContext(), "This is help!",
                         Toast.LENGTH_LONG).show();
                 return true;
             default:
@@ -107,8 +156,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+    public void borrarItem(){
+        // continue with delete
+        Team team = mAppDb.teamDao().getTeamById(index+1);
+        mAppDb.teamDao().delete(team);
+
+    }
+
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+    public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
 
     }
 
@@ -140,11 +196,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    /*private class TeamAdapter<T> extends ArrayAdapter {
-
-        public TeamAdapter(@NonNull Context context, @LayoutRes int resource, @IdRes int textViewResourceId, @NonNull java.util.List objects) {
-            super(context, resource, textViewResourceId, objects);
-        }*/
     public class TeamAdapter extends ArrayAdapter<Team> {
         public TeamAdapter(Context context, List<Team> users) {
             super(context, 0, users);
@@ -176,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
             holder.getNombre().setText(""+team.getName());
             holder.getApellido().setText(""+team.getDescription());
-            holder.getCargo().setText(""+team.getIdStadium());
+            holder.getCargo().setText(""+team.getIdTeam());
             holder.getImg().setImageResource(team.getImageLogo());
 
             return (row);

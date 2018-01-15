@@ -25,6 +25,13 @@ public interface TeamDao {
     @Query("SELECT * FROM teams WHERE idTeam IN (:teamsIds)")
     List<Team> loadAllByIds(int[] teamsIds);
 
+    @Query("select * from teams where idTeam = :id")
+    Team getTeamById(int id);
+
+
+    @Query("DELETE FROM teams where idTeam = :id")
+    void deleteById(int id);
+
     @Query("DELETE FROM teams")
     void deleteAll();
 
@@ -40,5 +47,8 @@ public interface TeamDao {
     @Update
     public void updateUsers(Team... teams);
 
-
+    /* Ejemplo
+    @Query("select * from Book where id = :id")
+    Book loadBookById(int id);
+    */
 }
