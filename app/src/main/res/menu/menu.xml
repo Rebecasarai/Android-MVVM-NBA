@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/add_team"
-        android:icon="@android:drawable/ic_menu_upload"
+        android:icon="@android:drawable/ic_input_add"
         android:title="@string/addTeam"
-        android:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
+    <item android:id="@+id/delete"
+        android:icon="@android:drawable/ic_delete"
+        android:title="@string/edit"
+        app:showAsAction="always"/>
     <item android:id="@+id/help"
         android:icon="@drawable/ic_launcher_background"
         android:title="@string/help" />

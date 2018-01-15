@@ -75,9 +75,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //Registramos la lista, la view que recibirá luego el Context Menu
         registerForContextMenu(mList);
         mList.setOnItemClickListener(this);
-
-
-
     }
 
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
@@ -89,11 +86,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public boolean onContextItemSelected(MenuItem item) {
         //find out which menu item was pressed
         switch (item.getItemId()) {
-            case R.id.option1:
-                Toast.makeText(getApplicationContext(), "This is my Toast message!",
+            case R.id.edit:
+                Toast.makeText(getApplicationContext(), "This is edit!",
                         Toast.LENGTH_LONG).show();
 
                 return true;
+
+            case R.id.delete:
+                Toast.makeText(getApplicationContext(), "This is edit!",
+                        Toast.LENGTH_LONG).show();
+
+                return true;
+
             case R.id.option2:
                 Toast.makeText(getApplicationContext(), "This is my Toast message!",
                         Toast.LENGTH_LONG).show();
@@ -151,6 +155,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             View row = convertView;
             ViewHolder holder;
+
             // Get the data item for this position
             Team team = (Team) getItem(position);
 
@@ -169,14 +174,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             else{
                 holder = (ViewHolder) row.getTag();
             }
-            /*
-            holder.getNombre().setText(""+mTeams.get(position).getName());
-            holder.getApellido().setText(""+mTeams.get(position).getDescription());
-            holder.getCargo().setText(""+mTeams.get(position).getIdStadium());
-            holder.getImg().setImageResource(mTeams.get(position).getImageLogo());
-            */
-
-
             holder.getNombre().setText(""+team.getName());
             holder.getApellido().setText(""+team.getDescription());
             holder.getCargo().setText(""+team.getIdStadium());
