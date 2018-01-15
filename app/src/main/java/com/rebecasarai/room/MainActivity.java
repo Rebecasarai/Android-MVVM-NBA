@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,45 +23,84 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import android.view.ContextMenu.ContextMenuInfo;
 
 import com.rebecasarai.room.ViewModels.TeamInfoWithAllTeamsViewModel;
 import com.rebecasarai.room.models.Team;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ListView mList;
-    private AppDatabase mAppDb;
     private TextView mText;
     private List<Team> mTeams;
     private Intent i;
+    TeamInfoWithAllTeamsViewModel mViewModel;
+    TeamAdapter a;
+    private ArrayList<String> listItems;
+    public AppDatabase mAppDb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mList = findViewById(R.id.listview);
-        mText = findViewById(R.id.text);
-        mAppDb = AppDatabase.getAppDatabase(getApplicationContext());
+        mText = findViewById(R.id.title);
 
-        TeamInfoWithAllTeamsViewModel mViewModel = ViewModelProviders.of(this).get(TeamInfoWithAllTeamsViewModel.class);
+
+        //mAppDb = AppDatabase.getAppDatabase(this.getApplication());
+
+        mViewModel = ViewModelProviders.of(this).get(TeamInfoWithAllTeamsViewModel.class);
 
         mViewModel.mTeams.observe(this, new Observer<List<Team>>() {
-                    @Override
-                    public void onChanged(@Nullable List<Team> teams) {
-                        TeamAdapter a = new TeamAdapter<Object>(getApplication(), R.layout.team_row, R.id.firstLine, mTeams);
-                        mList.setAdapter(a);
+            @Override
+            public void onChanged(@NonNull final List<Team> mTeams) {
 
-                    }
-                });
+                mText.setText(mTeams.get(0).getName());
 
+                for (int i = 0; i< mTeams.size(); i++){
+                    Log.v("Team: ",mTeams.get(i).getName());
+                }
 
+                a = new TeamAdapter(getApplicationContext(),mTeams);
+                mList.setAdapter(a);
+            }
+        });
 
+        //Registramos la lista, la view que recibirá luego el Context Menu
+        registerForContextMenu(mList);
         mList.setOnItemClickListener(this);
 
+
+
+    }
+
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.context_menu, menu);
+    }
+
+    public boolean onContextItemSelected(MenuItem item) {
+        //find out which menu item was pressed
+        switch (item.getItemId()) {
+            case R.id.option1:
+                Toast.makeText(getApplicationContext(), "This is my Toast message!",
+                        Toast.LENGTH_LONG).show();
+
+                return true;
+            case R.id.option2:
+                Toast.makeText(getApplicationContext(), "This is my Toast message!",
+                        Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return false;
+        }
     }
 
     @Override
@@ -96,35 +136,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-
-    private class TeamAdapter<T> extends ArrayAdapter {
+    /*private class TeamAdapter<T> extends ArrayAdapter {
 
         public TeamAdapter(@NonNull Context context, @LayoutRes int resource, @IdRes int textViewResourceId, @NonNull java.util.List objects) {
             super(context, resource, textViewResourceId, objects);
+        }*/
+    public class TeamAdapter extends ArrayAdapter<Team> {
+        public TeamAdapter(Context context, List<Team> users) {
+            super(context, 0, users);
         }
 
-        @Override
-        public int getViewTypeCount() {
-            return 2;
-        }
-
-        @Override
-        public int getItemViewType(int position) {
-            int tipo = -1;
-
-            if(mTeams.get(position) instanceof Team){
-                tipo=0;
-
-            }else{
-                tipo=1;
-            }
-            return tipo;
-        }
 
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             View row = convertView;
             ViewHolder holder;
+            // Get the data item for this position
+            Team team = (Team) getItem(position);
 
             if(row == null){
                 LayoutInflater inflater = getLayoutInflater();
@@ -141,10 +169,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             else{
                 holder = (ViewHolder) row.getTag();
             }
+            /*
             holder.getNombre().setText(""+mTeams.get(position).getName());
             holder.getApellido().setText(""+mTeams.get(position).getDescription());
             holder.getCargo().setText(""+mTeams.get(position).getIdStadium());
             holder.getImg().setImageResource(mTeams.get(position).getImageLogo());
+            */
+
+
+            holder.getNombre().setText(""+team.getName());
+            holder.getApellido().setText(""+team.getDescription());
+            holder.getCargo().setText(""+team.getIdStadium());
+            holder.getImg().setImageResource(team.getImageLogo());
+
             return (row);
         }
     }

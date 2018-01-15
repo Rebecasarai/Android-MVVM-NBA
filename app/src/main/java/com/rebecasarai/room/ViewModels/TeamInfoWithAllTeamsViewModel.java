@@ -19,13 +19,15 @@ public class TeamInfoWithAllTeamsViewModel extends AndroidViewModel {
 
     public final LiveData<List<Team>> mTeams;
 
-    private AppDatabase mDb;
+    public AppDatabase mAppDb;
 
     public TeamInfoWithAllTeamsViewModel(Application application) {
         super(application);
 
+        mAppDb = AppDatabase.getAppDatabase(this.getApplication());
+
         // Books is a LiveData object so updates are observed.
-        mTeams = mDb.teamDao().getAllLive();
+        mTeams = mAppDb.teamDao().getAllLive();
     }
 
 }
