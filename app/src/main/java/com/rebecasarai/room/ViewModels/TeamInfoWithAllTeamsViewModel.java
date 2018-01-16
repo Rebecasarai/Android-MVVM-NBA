@@ -23,7 +23,6 @@ public class TeamInfoWithAllTeamsViewModel extends AndroidViewModel {
     private AppDatabase mAppDb;
     private LiveData<Team> team;
 
-    private final MutableLiveData<Team> selected = new MutableLiveData<Team>();
 
     public TeamInfoWithAllTeamsViewModel(Application application) {
         super(application);
@@ -38,10 +37,16 @@ public class TeamInfoWithAllTeamsViewModel extends AndroidViewModel {
         return team;
     }
 
+    public LiveData<Team> getTeamById(int id) {
+        LiveData<Team> team = mAppDb.teamDao().getTeamByIdLive(id);
+        return team;
+    }
+
     public List<Team> getTeams(){
         List<Team> mTeams = mAppDb.teamDao().getAll();
         return mTeams;
     }
+
 
     public void insertTeam(Team team){
         mAppDb.teamDao().insertTeam(team);
@@ -50,6 +55,11 @@ public class TeamInfoWithAllTeamsViewModel extends AndroidViewModel {
 
     public void delete(Team team){
         mAppDb.teamDao().insertTeam(team);
+
+    }
+
+    public void deleteByID(int id){
+        mAppDb.teamDao().deleteById(id);
 
     }
 
@@ -65,19 +75,8 @@ public class TeamInfoWithAllTeamsViewModel extends AndroidViewModel {
 
     }
 
-    public void select(Team team) {
-        selected.setValue(team);
-    }
-
-    public LiveData<Team> getSelected() {
-        return selected;
-    }
-
 
     public void insertTeams(){
-        mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi, 1));
-        mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi, 1));
-        mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi, 1));
         mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi, 1));
 
 

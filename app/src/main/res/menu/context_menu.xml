@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/edit"
         android:icon="@android:drawable/ic_menu_edit"
-        android:title="@string/addTeam"
+        android:title="@string/edit"
         app:showAsAction="always"/>
     <item android:id="@+id/delete"
         android:icon="@android:drawable/ic_delete"
-        android:title="@string/edit"
+        android:title="@string/delete"
         app:showAsAction="always"/>
     <item android:id="@+id/help"
         android:icon="@drawable/ic_launcher_background"

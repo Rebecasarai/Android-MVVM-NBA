@@ -52,22 +52,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mList = findViewById(R.id.listview);
         mText = findViewById(R.id.title);
 
-
-        mAppDb = AppDatabase.getAppDatabase(this.getApplication());
+        mAppDb = AppDatabase.getAppDatabase(this);
 
         mViewModel = ViewModelProviders.of(this).get(TeamInfoWithAllTeamsViewModel.class);
 
-
         mTeams = mViewModel.getTeams();
-
 
         mViewModel.mTeams.observe(this, new Observer<List<Team>>() {
 
 
             @Override
             public void onChanged(@NonNull final List<Team> teams) {
-
-                //mText.setText(mTeams.get(0).getName());
 
                 for (int i = 0; i< teams.size(); i++){
                     Log.v("Team: ",teams.get(i).getName());
@@ -101,18 +96,30 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         index = info.position;
 
-        /*Toast.makeText(getApplicationContext(), ""+index,
-                Toast.LENGTH_LONG).show();*/
-
         //find out which menu item was pressed
         switch (item.getItemId()) {
             case R.id.edit:
                 Toast.makeText(getApplicationContext(), ""+index,
                         Toast.LENGTH_LONG).show();
+
+
+                //Team team2 = mViewModel.getTeam(index+1);
+                //mViewModel.delete(team2);
+
                 return true;
 
             case R.id.delete:
+                TextView txt = (TextView) findViewById(R.id.third);
+                int num = Integer.parseInt((String) txt.getText());
+                Toast.makeText(getApplicationContext(), "Delete "+ num +" index " + index,
+                        Toast.LENGTH_LONG).show();
 
+                /*Team team = mViewModel.getTeam(index+1);
+                mViewModel.delete(team);
+                mAppDb.teamDao().delete(mViewModel.getTeam(index+1));*/
+
+                //mAppDb.teamDao().delete(mViewModel.getTeam(index+1));
+/*
                 TextView txt = (TextView) findViewById(R.id.third);
                 int num = Integer.parseInt((String) txt.getText());
 
@@ -125,15 +132,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         Toast.makeText(getApplicationContext(), "Delete "+ index,
                                 Toast.LENGTH_LONG).show();
 
-                        mViewModel.delete(p);
-                        break;
+                        mViewModel.delete(team);
                     }
-                }
-
-
-
-
-
+                }*/
 
                 /*AlertDialog.Builder builder1 = new AlertDialog.Builder(getApplicationContext());
                 builder1.setMessage("Write your message here.");
@@ -157,9 +158,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 AlertDialog alert11 = builder1.create();
                 alert11.show();*/
-
-
-
                 return true;
 
             case R.id.help:
@@ -190,8 +188,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case R.id.add_team:
                 i= new Intent(this, AddTeamActivity.class);
                 startActivity(i);
-
                 return true;
+
+            case R.id.add4:
+                mViewModel.insertTeams();
+                return true;
+
             case R.id.help:
                 showHelp();
                 return true;
@@ -205,13 +207,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public class TeamAdapter extends ArrayAdapter<Team> {
+        private List<Team> teams;
+
         public TeamAdapter(Context context, List<Team> teams) {
             super(context, 0, teams);
+            this.teams = teams;
         }
 
 
         @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        public Team getItem(int pos) {
+            return teams.get(pos);
+        }
+
+        @Override
+        public long getItemId(int pos) {
+            return teams.get(pos).getIdTeam();
+            //just return 0 if your list items do not have an Id variable.
+        }
+
+        @Override
+        public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             View row = convertView;
             ViewHolder holder;
 
@@ -221,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 LayoutInflater inflater = getLayoutInflater();
                 //if(getItemViewType(position) == 0){
                     row= inflater.inflate(R.layout.team_row, parent, false);
-                    holder = new ViewHolder( row, R.id.firstLine,R.id.secondLine, R.id.third, R.id.icon, R.id.deleteImage);
+                    holder = new ViewHolder( row, R.id.firstLine,R.id.secondLine, R.id.third, R.id.icon, R.id.deleteImage, R.id.editImage);
                 /*}else{
                     row= inflater.inflate(R.layout.row, parent, false);
                     holder = new ViewHolder (row, R.id.jnombre2, R.id.japellido2, R.id.jcargo2, R.id.jedad2, R.id.jugadorImg2);
@@ -239,8 +255,29 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             holder.getDelete().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Team mTeam = mViewModel.getTeam(team.getIdTeam());
-                    mViewModel.delete(mTeam);
+
+                    Team mTeam = teams.get(position);
+
+                    Toast.makeText(getApplicationContext(), "Delete "+mTeam.getIdTeam(),
+                            Toast.LENGTH_LONG).show();
+
+                    mViewModel.deleteByID(mTeam.getIdTeam());
+
+                }
+            });
+
+            holder.getEdit().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Team mTeam = teams.get(position);
+
+                    Toast.makeText(getApplicationContext(), "Edit "+mTeam.getIdTeam(),
+                            Toast.LENGTH_LONG).show();
+
+
+
+
                 }
             });
 
@@ -251,14 +288,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     class ViewHolder {
         TextView nombre, apellido, cargo;
 
-        ImageView img, delete;
+        ImageView img, delete, edit;
 
-        public ViewHolder(View row, int jnombre, int japellido, int jcargo, int jugadorImg, int delete) {
+        public ViewHolder(View row, int jnombre, int japellido, int jcargo, int jugadorImg, int delete, int edit) {
             this.nombre = (TextView) row.findViewById(jnombre);
             this.apellido = (TextView) row.findViewById(japellido);
             this.cargo = (TextView) row.findViewById(jcargo);
             this.img = (ImageView) row.findViewById(jugadorImg);
             this.delete = (ImageView) row.findViewById(delete);
+            this.edit = (ImageView) row.findViewById(edit);
+        }
+
+        public ImageView getEdit() {
+            return edit;
+        }
+
+        public void setEdit(ImageView edit) {
+            this.edit = edit;
         }
 
         public ImageView getDelete() {

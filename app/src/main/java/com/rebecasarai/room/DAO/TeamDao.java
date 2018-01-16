@@ -28,6 +28,9 @@ public interface TeamDao {
     @Query("select * from teams where idTeam = :id")
     Team getTeamById(int id);
 
+    @Query("select * from teams where idTeam = :id")
+    LiveData<Team> getTeamByIdLive(int id);
+
 
     @Query("DELETE FROM teams where idTeam = :id")
     void deleteById(int id);

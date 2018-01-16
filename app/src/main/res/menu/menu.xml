@@ -5,6 +5,11 @@
         android:icon="@android:drawable/ic_input_add"
         android:title="@string/addTeam"
         app:showAsAction="always"/>
+
+    <item android:id="@+id/add4"
+    android:icon="@android:drawable/ic_menu_add"
+    android:title="@string/addTeam"
+    app:showAsAction="always"/>
     <item android:id="@+id/delete"
         android:icon="@android:drawable/ic_delete"
         android:title="@string/edit"
