@@ -59,8 +59,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mTeams = mViewModel.getTeams();
 
         mViewModel.mTeams.observe(this, new Observer<List<Team>>() {
-
-
             @Override
             public void onChanged(@NonNull final List<Team> teams) {
 
