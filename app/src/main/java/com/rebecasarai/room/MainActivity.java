@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Intent i;
     MainActivityVM mViewModel;
     TeamAdapter a;
-    public AppDatabase mAppDb;
     int position;
     int index;
     Team team;
