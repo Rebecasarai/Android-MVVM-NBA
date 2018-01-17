@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,7 +25,7 @@ import android.widget.Toast;
 
 import android.view.ContextMenu.ContextMenuInfo;
 
-import com.rebecasarai.room.ViewModels.TeamInfoWithAllTeamsViewModel;
+import com.rebecasarai.room.ViewModels.MainActivityVM;
 import com.rebecasarai.room.models.Team;
 
 import java.util.List;
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private List<Team> mTeams;
     private TextView mText;
     private Intent i;
-    TeamInfoWithAllTeamsViewModel mViewModel;
+    MainActivityVM mViewModel;
     TeamAdapter a;
     public AppDatabase mAppDb;
     int position;
@@ -52,13 +51,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mList = findViewById(R.id.listview);
         mText = findViewById(R.id.title);
 
-        mAppDb = AppDatabase.getAppDatabase(this);
+        mViewModel = ViewModelProviders.of(this).get(MainActivityVM.class);
 
-        mViewModel = ViewModelProviders.of(this).get(TeamInfoWithAllTeamsViewModel.class);
-
-        mTeams = mViewModel.getTeams();
-
-        mViewModel.mTeams.observe(this, new Observer<List<Team>>() {
+        mViewModel.getmTeams().observe(this, new Observer<List<Team>>() {
             @Override
             public void onChanged(@NonNull final List<Team> teams) {
 
@@ -66,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     Log.v("Team: ",teams.get(i).getName());
                 }
                 a = new TeamAdapter(getApplication(),teams);
+                //TODO: Set contador para solo crear TeamAdapter una vez
                 mList.setAdapter(a);
             }
         });
@@ -85,11 +81,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         contextMenu.add(0, R.id.edit, 0, R.string.edit);
         contextMenu.add(0, R.id.delete, 1, R.string.delete);
 
-        /*Funciona super bien, sencillo. Solo que probaré de la otra forma
+        /*Funciona super bien, sencillo. Solo que probaré de la otra forma: Programatica
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.context_menu, contextMenu);*/
     }
 
+    //Metodo que del item seleccionado del menu context
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         index = info.position;
@@ -99,11 +96,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case R.id.edit:
                 Toast.makeText(getApplicationContext(), ""+index,
                         Toast.LENGTH_LONG).show();
-
-
-                //Team team2 = mViewModel.getTeam(index+1);
-                //mViewModel.delete(team2);
-
                 return true;
 
             case R.id.delete:
@@ -139,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 builder1.setCancelable(true);
 
                 builder1.setPositiveButton(
-                        "Yes",
+                        "Si",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
@@ -169,6 +161,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+
 
     }
 
@@ -233,14 +226,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             team = (Team) getItem(position);
             if(row == null){
                 LayoutInflater inflater = getLayoutInflater();
-                //if(getItemViewType(position) == 0){
                     row= inflater.inflate(R.layout.team_row, parent, false);
                     holder = new ViewHolder( row, R.id.firstLine,R.id.secondLine, R.id.third, R.id.icon, R.id.deleteImage, R.id.editImage);
-                /*}else{
-                    row= inflater.inflate(R.layout.row, parent, false);
-                    holder = new ViewHolder (row, R.id.jnombre2, R.id.japellido2, R.id.jcargo2, R.id.jedad2, R.id.jugadorImg2);
-                    //holder.getImg().setImageResource(jugadores.get(position).getImagen());
-                }*/
+
                 row.setTag(holder);
             }
             else{
@@ -273,8 +261,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     Toast.makeText(getApplicationContext(), "Edit "+mTeam.getIdTeam(),
                             Toast.LENGTH_LONG).show();
 
-
-
+                    i= new Intent(getApplicationContext(), EditTeamActivity.class);
+                    i.putExtra("team",mTeam);
+                    startActivity(i);
 
                 }
             });

@@ -16,8 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddTeamActivity">
-    </activity>
+        <activity android:name=".AddTeamActivity" android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".EditTeamActivity"
+            android:label="@string/title_activity_edit_team"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

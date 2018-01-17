@@ -4,4 +4,5 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="help">Help</string>
+    <string name="title_activity_edit_team">EditTeamActivity</string>
 </resources>

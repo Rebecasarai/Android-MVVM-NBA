@@ -17,14 +17,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.rebecasarai.room.ViewModels.TeamInfoWithAllTeamsViewModel;
-import com.rebecasarai.room.Views.TeamAdaptera;
+import com.rebecasarai.room.ViewModels.MainActivityVM;
 import com.rebecasarai.room.models.Team;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AddTeamActivity extends AppCompatActivity implements View.OnClickListener{
@@ -32,7 +29,7 @@ public class AddTeamActivity extends AppCompatActivity implements View.OnClickLi
     private AppDatabase mAppDb;
     private ListView mList;
     private Intent i;
-    private TeamInfoWithAllTeamsViewModel mViewModel;
+    private MainActivityVM mViewModel;
     private TeamAdaptere a;
     private EditText mEditNameTeam;
     private Button mBtnSave;
@@ -43,7 +40,7 @@ public class AddTeamActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.addteam_activity);
 
         // Get a reference to the ViewModel
-        mViewModel = ViewModelProviders.of(this).get(TeamInfoWithAllTeamsViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(MainActivityVM.class);
 
         //mAppDb = AppDatabase.getAppDatabase(getApplicationContext());
         //mTeams = mAppDb.teamDao().getAll();
@@ -53,8 +50,8 @@ public class AddTeamActivity extends AppCompatActivity implements View.OnClickLi
 
         mAppDb = AppDatabase.getAppDatabase(this.getApplication());
 
-        mViewModel = ViewModelProviders.of(this).get(TeamInfoWithAllTeamsViewModel.class);
-        mViewModel.mTeams.observe(this, new Observer<List<Team>>() {
+        mViewModel = ViewModelProviders.of(this).get(MainActivityVM.class);
+        mViewModel.getmTeams().observe(this, new Observer<List<Team>>() {
             @Override
             public void onChanged(@NonNull final List<Team> mTeams) {
 

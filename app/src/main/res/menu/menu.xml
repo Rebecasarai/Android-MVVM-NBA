@@ -10,10 +10,10 @@
     android:icon="@android:drawable/ic_menu_add"
     android:title="@string/addTeam"
     app:showAsAction="always"/>
-    <item android:id="@+id/delete"
-        android:icon="@android:drawable/ic_delete"
-        android:title="@string/edit"
-        app:showAsAction="always"/>
+    <item android:id="@+id/More"
+        android:icon="@android:drawable/ic_menu_more"
+        android:title="More"
+        app:showAsAction="ifRoom"/>
     <item android:id="@+id/help"
         android:icon="@drawable/ic_launcher_background"
         android:title="@string/help" />

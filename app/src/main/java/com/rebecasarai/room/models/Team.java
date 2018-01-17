@@ -11,7 +11,7 @@ import android.support.annotation.NonNull;
  */
 
 @Entity(tableName = "teams")
-public class Team  {
+public class Team  implements Parcelable{
     @PrimaryKey(autoGenerate = true)
     private int idTeam;
     private String name;
@@ -29,6 +29,26 @@ public class Team  {
     public Team() {
 
     }
+
+    protected Team(Parcel in) {
+        idTeam = in.readInt();
+        name = in.readString();
+        description = in.readString();
+        imageLogo = in.readInt();
+        idStadium = in.readInt();
+    }
+
+    public static final Creator<Team> CREATOR = new Creator<Team>() {
+        @Override
+        public Team createFromParcel(Parcel in) {
+            return new Team(in);
+        }
+
+        @Override
+        public Team[] newArray(int size) {
+            return new Team[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -68,5 +88,20 @@ public class Team  {
 
     public void setIdStadium(int idStadium) {
         this.idStadium = idStadium;
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(idTeam);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeInt(imageLogo);
+        dest.writeInt(idStadium);
     }
 }

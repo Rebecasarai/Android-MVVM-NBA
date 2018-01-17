@@ -16,35 +16,17 @@ import java.util.List;
  * Created by rebecagonzalez on 15/1/18.
  */
 
-public class TeamInfoWithAllTeamsViewModel extends AndroidViewModel {
+public class MainActivityVM extends AndroidViewModel {
 
-    public final LiveData<List<Team>> mTeams;
+    private final LiveData<List<Team>> mTeams;
 
     private AppDatabase mAppDb;
-    private LiveData<Team> team;
 
-
-    public TeamInfoWithAllTeamsViewModel(Application application) {
+    public MainActivityVM(Application application) {
         super(application);
 
-        mAppDb = AppDatabase.getAppDatabase(this.getApplication());
-
-        // Books is a LiveData object so updates are observed.
+        mAppDb = AppDatabase.getAppDatabase(application);
         mTeams = mAppDb.teamDao().getAllLive();
-    }
-
-    public LiveData<Team> getTeam() {
-        return team;
-    }
-
-    public LiveData<Team> getTeamById(int id) {
-        LiveData<Team> team = mAppDb.teamDao().getTeamByIdLive(id);
-        return team;
-    }
-
-    public List<Team> getTeams(){
-        List<Team> mTeams = mAppDb.teamDao().getAll();
-        return mTeams;
     }
 
 
@@ -78,7 +60,10 @@ public class TeamInfoWithAllTeamsViewModel extends AndroidViewModel {
 
     public void insertTeams(){
         mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi, 1));
+    }
 
-
+    public LiveData<List<Team>> getmTeams() {
+        return mTeams;
     }
 }
+
