@@ -3,37 +3,38 @@ package com.rebecasarai.room.ViewModels;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import android.support.annotation.NonNull;
 
 import com.rebecasarai.room.AppDatabase;
-import com.rebecasarai.room.R;
 import com.rebecasarai.room.models.Team;
 
 import java.util.List;
 
 /**
- * Created by rsgonzalez on 17/01/18.
+ * Created by rebecagonzalez on 18/1/18.
  */
 
-public class EditTeamVM extends AndroidViewModel {
+public class AddTeamVM extends AndroidViewModel {
 
-    private LiveData<List<Team>> mTeams;
+    private final LiveData<List<Team>> mTeams;
+
     private AppDatabase mAppDb;
 
-
-    public EditTeamVM(@NonNull Application application) {
+    public AddTeamVM(Application application) {
         super(application);
 
         mAppDb = AppDatabase.getAppDatabase(application);
         mTeams = mAppDb.teamDao().getAllLive();
     }
 
-    public void updateTeam(Team team){
-        mAppDb.teamDao().updateTeam(team);
+    public void insertTeam(Team team){
+        mAppDb.teamDao().insertTeam(team);
     }
+
+
+
 
     public LiveData<List<Team>> getmTeams() {
         return mTeams;
     }
-
 }
+

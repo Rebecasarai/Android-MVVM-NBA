@@ -5,4 +5,8 @@
     <string name="delete">Delete</string>
     <string name="help">Help</string>
     <string name="title_activity_edit_team">EditTeamActivity</string>
+
+    <string name="nameerror">Enter a valid name</string>
+    <string name="descriptionerror">Enter a valid email</string>
+    <string name="stadiumerror">Enter a valid mobile</string>
 </resources>

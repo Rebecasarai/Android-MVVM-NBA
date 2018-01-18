@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,49 +18,53 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.rebecasarai.room.ViewModels.AddTeamVM;
 import com.rebecasarai.room.ViewModels.MainActivityVM;
+import com.rebecasarai.room.Views.SimpleTeamAdapter;
+import com.rebecasarai.room.Views.TeamAdaptera;
 import com.rebecasarai.room.models.Team;
 
 import java.util.List;
 
-public class AddTeamActivity extends AppCompatActivity implements View.OnClickListener{
+public class AddTeamActivity extends AppCompatActivity implements View.OnClickListener, android.text.TextWatcher {
 
     private AppDatabase mAppDb;
     private ListView mList;
     private Intent i;
-    private MainActivityVM mViewModel;
-    private TeamAdaptere a;
+    private AddTeamVM mViewModel;
+    private SimpleTeamAdapter a;
     private EditText mEditNameTeam;
     private Button mBtnSave;
+    private Team mTeamToAdd;
+
+    private List<Team> mTeams;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addteam_activity);
 
-        // Get a reference to the ViewModel
-        mViewModel = ViewModelProviders.of(this).get(MainActivityVM.class);
 
-        //mAppDb = AppDatabase.getAppDatabase(getApplicationContext());
-        //mTeams = mAppDb.teamDao().getAll();
         mList = findViewById(R.id.listViewActual);
         mEditNameTeam = findViewById(R.id.editNameTeam);
         mBtnSave = findViewById(R.id.btnSave);
 
-        mAppDb = AppDatabase.getAppDatabase(this.getApplication());
+        mEditNameTeam.addTextChangedListener(this);
 
-        mViewModel = ViewModelProviders.of(this).get(MainActivityVM.class);
+        mViewModel = ViewModelProviders.of(AddTeamActivity.this).get(AddTeamVM.class);
+
         mViewModel.getmTeams().observe(this, new Observer<List<Team>>() {
             @Override
-            public void onChanged(@NonNull final List<Team> mTeams) {
+            public void onChanged(@NonNull final List<Team> teams) {
 
-                for (int i = 0; i< mTeams.size(); i++){
-                    Log.v("Team: ",mTeams.get(i).getName());
+                for (int i = 0; i< teams.size(); i++){
+                    Log.v("Team: ",teams.get(i).getName());
                 }
-
-                a = new TeamAdaptere(getApplicationContext(),mTeams);
+                a = new SimpleTeamAdapter(getApplicationContext(), teams);
                 mList.setAdapter(a);
             }
         });
@@ -70,113 +75,44 @@ public class AddTeamActivity extends AppCompatActivity implements View.OnClickLi
         mBtnSave.setOnClickListener(this);
 
 
-        //mList.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnSave:
+                if( mEditNameTeam.getText().toString().length() != 0 ){
+                    mTeamToAdd = new Team(mEditNameTeam.getText().toString(),"",R.drawable.chi2,1);
+                    mViewModel.insertTeam(mTeamToAdd);
+
+                    Toast.makeText(getApplicationContext(), "Equipo añadido",
+                            Toast.LENGTH_LONG).show();
+                }else {
+
+                    mBtnSave.setError( "El nombre es requerido" );
+                }
 
 
-        //Spinner
-        /*
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.stadiums_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);*/
-        //End of spinner
+            break;
+        }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
 
 
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btnSave:
-
-            break;
+    public void afterTextChanged(Editable s) {
+        if( mEditNameTeam.getText().toString().length() == 0 ){
+            mEditNameTeam.setError( "El nombre es requerido" );
         }
+
     }
-    public class TeamAdaptere extends ArrayAdapter<Team> {
-        public TeamAdaptere(Context context, List<Team> teams) {
-            super(context, 0, teams);
-        }
-
-
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            View row = convertView;
-            ViewHoldere holder;
-
-            // Get the data item for this position
-            Team team = (Team) getItem(position);
-
-            if(row == null){
-                LayoutInflater inflater = getLayoutInflater();
-                //if(getItemViewType(position) == 0){
-                row= inflater.inflate(R.layout.team_row, parent, false);
-                holder = new ViewHoldere( row, R.id.firstLine,R.id.secondLine, R.id.third, R.id.icon);
-                /*}else{
-                    row= inflater.inflate(R.layout.row, parent, false);
-                    holder = new ViewHolder (row, R.id.jnombre2, R.id.japellido2, R.id.jcargo2, R.id.jedad2, R.id.jugadorImg2);
-                    //holder.getImg().setImageResource(jugadores.get(position).getImagen());
-                }*/
-                row.setTag(holder);
-            }
-            else{
-                holder = (ViewHoldere) row.getTag();
-            }
-            holder.getNombre().setText(""+team.getName());
-            holder.getApellido().setText(""+team.getDescription());
-            holder.getCargo().setText(""+team.getIdTeam());
-            holder.getImg().setImageResource(team.getImageLogo());
-
-            return (row);
-        }
-    }
-
-    class ViewHoldere {
-        TextView nombre, apellido, cargo;
-        ImageView img;
-
-        public ViewHoldere(View row, int jnombre, int japellido, int jcargo, int jugadorImg) {
-            this.nombre = (TextView) row.findViewById(jnombre);
-            this.apellido = (TextView) row.findViewById(japellido);
-            this.cargo = (TextView) row.findViewById(jcargo);
-            this.img = (ImageView) row.findViewById(jugadorImg);
-        }
-
-        public TextView getNombre() {
-            return nombre;
-        }
-
-        public void setNombre(TextView nombre) {
-            this.nombre = nombre;
-        }
-
-        public TextView getApellido() {
-            return apellido;
-        }
-
-        public void setApellido(TextView apellido) {
-            this.apellido = apellido;
-        }
-
-        public TextView getCargo() {
-            return cargo;
-        }
-
-        public void setCargo(TextView cargo) {
-            this.cargo = cargo;
-        }
-
-
-        public void setImg(ImageView img) {
-            this.img = img;
-        }
-
-        public ImageView getImg (){
-            return this.img;
-        }
-    }
-
-
 }
-
-

@@ -58,13 +58,16 @@
         android:layout_height="100dp"
         android:src="@drawable/chi2"
         android:id="@+id/editImageView"/>
-
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit " />
+        android:text="Teams"
+        android:textAlignment="center"/>
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mListView" ></ListView>
 
 
 </LinearLayout>

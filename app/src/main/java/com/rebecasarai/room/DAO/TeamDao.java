@@ -48,7 +48,10 @@ public interface TeamDao {
     void delete(Team team);
 
     @Update
-    public void updateUsers(Team... teams);
+    public void updateTeams(Team... teams);
+
+    @Update
+    public void updateTeam(Team team);
 
     /* Ejemplo
     @Query("select * from Book where id = :id")

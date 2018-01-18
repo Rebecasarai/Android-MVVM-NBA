@@ -3,6 +3,8 @@ package com.rebecasarai.room.models;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * Created by rsgonzalez on 10/01/18.
@@ -10,7 +12,7 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(foreignKeys = @ForeignKey(entity = Team.class,
                                     parentColumns = "idTeam",
                                     childColumns = "idTeam"), tableName = "players")
-public class Player {
+public class Player implements Parcelable{
     @PrimaryKey(autoGenerate = true)
     private int idPlayer;
     private String namePlayer;
@@ -27,6 +29,27 @@ public class Player {
         this.imagePlayer = imagePlayer;
         this.idTeam = idTeam;
     }
+
+    protected Player(Parcel in) {
+        idPlayer = in.readInt();
+        namePlayer = in.readString();
+        directionPlayer = in.readString();
+        descriptionPlayer = in.readString();
+        imagePlayer = in.readInt();
+        idTeam = in.readInt();
+    }
+
+    public static final Creator<Player> CREATOR = new Creator<Player>() {
+        @Override
+        public Player createFromParcel(Parcel in) {
+            return new Player(in);
+        }
+
+        @Override
+        public Player[] newArray(int size) {
+            return new Player[size];
+        }
+    };
 
     public int getIdPlayer() {
         return idPlayer;
@@ -74,5 +97,20 @@ public class Player {
 
     public void setIdTeam(int idTeam) {
         this.idTeam = idTeam;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(idPlayer);
+        dest.writeString(namePlayer);
+        dest.writeString(directionPlayer);
+        dest.writeString(descriptionPlayer);
+        dest.writeInt(imagePlayer);
+        dest.writeInt(idTeam);
     }
 }

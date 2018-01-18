@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 for (int i = 0; i< teams.size(); i++){
                     Log.v("Team: ",teams.get(i).getName());
                 }
-                a = new TeamAdaptera(getApplication(),MainActivity.this,teams);
+                a = new TeamAdaptera(getApplicationContext(),MainActivity.this,teams);
                 //TODO: Set contador para solo crear TeamAdapter una vez
                 mList.setAdapter(a);
             }

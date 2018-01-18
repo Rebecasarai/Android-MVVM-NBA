@@ -5,21 +5,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Created by rsgonzalez on 10/01/18.
+ * Created by rebecagonzalez on 18/1/18.
  */
 
-class ViewHoldera {
+class SimpleViewHolder {
     TextView nombre, apellido, cargo;
 
     ImageView img, delete, edit;
 
-    public ViewHoldera(View row, int jnombre, int japellido, int jcargo, int jugadorImg, int delete, int edit) {
+    public SimpleViewHolder(View row, int jnombre, int japellido, int jcargo, int jugadorImg) {
         this.nombre = (TextView) row.findViewById(jnombre);
         this.apellido = (TextView) row.findViewById(japellido);
         this.cargo = (TextView) row.findViewById(jcargo);
         this.img = (ImageView) row.findViewById(jugadorImg);
-        this.delete = (ImageView) row.findViewById(delete);
-        this.edit = (ImageView) row.findViewById(edit);
     }
 
     public ImageView getEdit() {
@@ -71,8 +69,3 @@ class ViewHoldera {
         return this.img;
     }
 }
-
-
-
-
-
