@@ -10,7 +10,9 @@ import android.support.annotation.NonNull;
  * Created by rsgonzalez on 8/1/17.
  */
 
-@Entity(tableName = "teams")
+@Entity(foreignKeys = @ForeignKey(entity = Stadium.class,
+        parentColumns = "idStadium",
+        childColumns = "idStadium"), tableName = "teams")
 public class Team  implements Parcelable{
     @PrimaryKey(autoGenerate = true)
     private int idTeam;

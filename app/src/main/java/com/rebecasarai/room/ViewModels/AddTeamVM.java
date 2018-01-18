@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 
 import com.rebecasarai.room.AppDatabase;
+import com.rebecasarai.room.models.Stadium;
 import com.rebecasarai.room.models.Team;
 
 import java.util.List;
@@ -15,7 +16,8 @@ import java.util.List;
 
 public class AddTeamVM extends AndroidViewModel {
 
-    private final LiveData<List<Team>> mTeams;
+    private LiveData<List<Team>> mTeams;
+    private LiveData<List<Stadium>> mStadiums;
 
     private AppDatabase mAppDb;
 
@@ -24,6 +26,7 @@ public class AddTeamVM extends AndroidViewModel {
 
         mAppDb = AppDatabase.getAppDatabase(application);
         mTeams = mAppDb.teamDao().getAllLive();
+        mStadiums = mAppDb.stadiumDao().getAllLive();
     }
 
     public void insertTeam(Team team){
@@ -31,10 +34,12 @@ public class AddTeamVM extends AndroidViewModel {
     }
 
 
-
-
     public LiveData<List<Team>> getmTeams() {
         return mTeams;
+    }
+
+    public LiveData<List<Stadium>> getmStadiums() {
+        return mStadiums;
     }
 }
 
