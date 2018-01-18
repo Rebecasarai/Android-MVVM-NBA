@@ -8,6 +8,7 @@ import android.arch.lifecycle.ViewModel;
 
 import com.rebecasarai.room.AppDatabase;
 import com.rebecasarai.room.R;
+import com.rebecasarai.room.models.Stadium;
 import com.rebecasarai.room.models.Team;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
 public class MainActivityVM extends AndroidViewModel {
 
     private final LiveData<List<Team>> mTeams;
+
 
     private AppDatabase mAppDb;
 
@@ -45,11 +47,8 @@ public class MainActivityVM extends AndroidViewModel {
 
     }
 
-
-    public Team getTeam(int id){
-        Team team = mAppDb.teamDao().getTeamById(id);
-        return team;
-
+    public void insertStadium(){
+        mAppDb.stadiumDao().insertStadium(new Stadium("United Center", "41.8817328,-87.6742026","Great Stadium in 1901 W Madison St"));
     }
 
     public void deleteAll(){
@@ -57,9 +56,14 @@ public class MainActivityVM extends AndroidViewModel {
 
     }
 
+    public int getStadium(){
+        int id = mAppDb.stadiumDao().getStadium(1).getIdStadium();
+        return id;
+
+    }
 
     public void insertTeams(){
-        mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi2, 1));
+        mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi2,  getStadium()));
     }
 
     public LiveData<List<Team>> getmTeams() {

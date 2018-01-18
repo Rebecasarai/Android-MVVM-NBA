@@ -6,7 +6,6 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
 import com.rebecasarai.room.AppDatabase;
-import com.rebecasarai.room.R;
 import com.rebecasarai.room.models.Team;
 
 import java.util.List;

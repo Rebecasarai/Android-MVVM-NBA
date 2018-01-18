@@ -52,13 +52,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mText = findViewById(R.id.title);
 
         mViewModel = ViewModelProviders.of(this).get(MainActivityVM.class);
+        //mViewModel.insertStadium();
 
         mViewModel.getmTeams().observe(this, new Observer<List<Team>>() {
             @Override
             public void onChanged(@NonNull final List<Team> teams) {
 
                 for (int i = 0; i< teams.size(); i++){
-                    Log.v("Team: ",teams.get(i).getName());
+                    Log.v("Team: ",teams.get(i).toString());
                 }
                 a = new TeamAdaptera(getApplicationContext(),MainActivity.this,teams);
                 //TODO: Set contador para solo crear TeamAdapter una vez
@@ -85,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.context_menu, contextMenu);*/
     }
+
+
 
     //Metodo que del item seleccionado del menu context
     public boolean onContextItemSelected(MenuItem item) {

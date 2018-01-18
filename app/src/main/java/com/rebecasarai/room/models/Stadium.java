@@ -18,19 +18,26 @@ public class Stadium implements Parcelable {
     private String adress;
     private String info;
 
-    public Stadium(int idStadium, String name, String adress, String info) {
-        this.idStadium = idStadium;
+    public Stadium(String name, String adress, String info) {
         this.name = name;
         this.adress = adress;
         this.info = info;
     }
 
-    public int getIdStadium() {
-        return idStadium;
+
+    @Override
+    public String toString() {
+        return "Stadium{" +
+                "idStadium=" + idStadium +
+                '}';
     }
 
     public void setIdStadium(int idStadium) {
         this.idStadium = idStadium;
+    }
+
+    public int getIdStadium() {
+        return idStadium;
     }
 
     public String getName() {
