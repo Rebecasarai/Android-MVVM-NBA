@@ -10,18 +10,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+        </activity>
+        <activity
+            android:name=".AddTeamActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".EditTeamActivity"
+            android:label="@string/title_activity_edit_team"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SplashActivity" android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".AddTeamActivity" android:parentActivityName=".MainActivity"></activity>
-        <activity
-            android:name=".EditTeamActivity"
-            android:label="@string/title_activity_edit_team"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

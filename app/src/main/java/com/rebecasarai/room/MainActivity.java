@@ -26,6 +26,7 @@ import android.widget.Toast;
 import android.view.ContextMenu.ContextMenuInfo;
 
 import com.rebecasarai.room.ViewModels.MainActivityVM;
+import com.rebecasarai.room.Views.TeamAdaptera;
 import com.rebecasarai.room.models.Team;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private TextView mText;
     private Intent i;
     MainActivityVM mViewModel;
-    TeamAdapter a;
+    TeamAdaptera a;
     int position;
     int index;
     Team team;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 for (int i = 0; i< teams.size(); i++){
                     Log.v("Team: ",teams.get(i).getName());
                 }
-                a = new TeamAdapter(getApplication(),teams);
+                a = new TeamAdaptera(getApplication(),MainActivity.this,teams);
                 //TODO: Set contador para solo crear TeamAdapter una vez
                 mList.setAdapter(a);
             }
@@ -102,51 +103,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 int num = Integer.parseInt((String) txt.getText());
                 Toast.makeText(getApplicationContext(), "Delete "+ num +" index " + index,
                         Toast.LENGTH_LONG).show();
-
-                /*Team team = mViewModel.getTeam(index+1);
-                mViewModel.delete(team);
-                mAppDb.teamDao().delete(mViewModel.getTeam(index+1));*/
-
-                //mAppDb.teamDao().delete(mViewModel.getTeam(index+1));
-/*
-                TextView txt = (TextView) findViewById(R.id.third);
-                int num = Integer.parseInt((String) txt.getText());
-
-                for (Team p : mTeams) {
-                    Toast.makeText(getApplicationContext(), "Delete "+ num,
-                            Toast.LENGTH_LONG).show();
-                    if (p.getIdTeam()== num){
-                        Team team = mViewModel.getTeam(num);
-
-                        Toast.makeText(getApplicationContext(), "Delete "+ index,
-                                Toast.LENGTH_LONG).show();
-
-                        mViewModel.delete(team);
-                    }
-                }*/
-
-                /*AlertDialog.Builder builder1 = new AlertDialog.Builder(getApplicationContext());
-                builder1.setMessage("Write your message here.");
-                builder1.setCancelable(true);
-
-                builder1.setPositiveButton(
-                        "Si",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-                builder1.setNegativeButton(
-                        "No",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog alert11 = builder1.create();
-                alert11.show();*/
                 return true;
 
             case R.id.help:

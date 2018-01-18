@@ -59,7 +59,7 @@ public class MainActivityVM extends AndroidViewModel {
 
 
     public void insertTeams(){
-        mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi, 1));
+        mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi2, 1));
     }
 
     public LiveData<List<Team>> getmTeams() {
