@@ -4,12 +4,13 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,8 +23,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import android.view.ContextMenu.ContextMenuInfo;
 
 import com.rebecasarai.room.ViewModels.MainActivityVM;
 import com.rebecasarai.room.Views.TeamAdaptera;
@@ -58,10 +57,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onChanged(@NonNull final List<Team> teams) {
 
-                for (int i = 0; i< teams.size(); i++){
-                    Log.v("Team: ",teams.get(i).toString());
+                mTeams = teams;
+                for (int i = 0; i < teams.size(); i++) {
+                    Log.v("Team: ", teams.get(i).toString());
                 }
-                a = new TeamAdaptera(getApplicationContext(),MainActivity.this,teams);
+                a = new TeamAdaptera(getApplicationContext(), MainActivity.this, teams);
                 //TODO: Set contador para solo crear TeamAdapter una vez
                 mList.setAdapter(a);
             }
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
         position = info.position;
 
-        contextMenu.setHeaderTitle("Opciones de "+position);
+        contextMenu.setHeaderTitle("Opciones de " + position);
         contextMenu.add(0, R.id.edit, 0, R.string.edit);
         contextMenu.add(0, R.id.delete, 1, R.string.delete);
 
@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.context_menu, contextMenu);*/
     }
-
 
 
     //Metodo que del item seleccionado del menu context
@@ -97,14 +96,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //find out which menu item was pressed
         switch (item.getItemId()) {
             case R.id.edit:
-                Toast.makeText(getApplicationContext(), ""+index,
+                Toast.makeText(getApplicationContext(), "" + index,
                         Toast.LENGTH_LONG).show();
                 return true;
 
             case R.id.delete:
                 TextView txt = (TextView) findViewById(R.id.third);
                 int num = Integer.parseInt((String) txt.getText());
-                Toast.makeText(getApplicationContext(), "Delete "+ num +" index " + index,
+                AppDatabase.getAppDatabase(this).teamDao().delete(mTeams.get(index));
+                Toast.makeText(getApplicationContext(), "Delete " + num + " index " + index,
                         Toast.LENGTH_LONG).show();
                 return true;
 
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.add_team:
-                i= new Intent(this, AddTeamActivity.class);
+                i = new Intent(this, AddTeamActivity.class);
                 startActivity(i);
                 return true;
 
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
-    public void showHelp(){
+    public void showHelp() {
 
     }
 
@@ -182,19 +182,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             // Get the data item for this position
             team = (Team) getItem(position);
-            if(row == null){
+            if (row == null) {
                 LayoutInflater inflater = getLayoutInflater();
-                    row= inflater.inflate(R.layout.team_row, parent, false);
-                    holder = new ViewHolder( row, R.id.firstLine,R.id.secondLine, R.id.third, R.id.icon, R.id.deleteImage, R.id.editImage);
+                row = inflater.inflate(R.layout.team_row, parent, false);
+                holder = new ViewHolder(row, R.id.firstLine, R.id.secondLine, R.id.third, R.id.icon, R.id.deleteImage, R.id.editImage);
 
                 row.setTag(holder);
-            }
-            else{
+            } else {
                 holder = (ViewHolder) row.getTag();
             }
             holder.getNombre().setText(team.getName());
             holder.getApellido().setText(team.getDescription());
-            holder.getCargo().setText(""+team.getIdTeam());
+            holder.getCargo().setText("" + team.getIdTeam());
             holder.getImg().setImageResource(team.getImageLogo());
             holder.getDelete().setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -202,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                     Team mTeam = teams.get(position);
 
-                    Toast.makeText(getApplicationContext(), "Delete "+mTeam.getIdTeam(),
+                    Toast.makeText(getApplicationContext(), "Delete " + mTeam.getIdTeam(),
                             Toast.LENGTH_LONG).show();
 
                     mViewModel.deleteByID(mTeam.getIdTeam());
@@ -216,11 +215,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                     Team mTeam = teams.get(position);
 
-                    Toast.makeText(getApplicationContext(), "Edit "+mTeam.getIdTeam(),
+                    Toast.makeText(getApplicationContext(), "Edit " + mTeam.getIdTeam(),
                             Toast.LENGTH_LONG).show();
 
-                    i= new Intent(getApplicationContext(), EditTeamActivity.class);
-                    i.putExtra("team",mTeam);
+                    i = new Intent(getApplicationContext(), EditTeamActivity.class);
+                    i.putExtra("team", mTeam);
                     startActivity(i);
 
                 }
@@ -289,7 +288,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             this.img = img;
         }
 
-        public ImageView getImg (){
+        public ImageView getImg() {
             return this.img;
         }
     }
