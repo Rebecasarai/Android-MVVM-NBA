@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
+import android.os.AsyncTask;
 
 import com.rebecasarai.room.AppDatabase;
 import com.rebecasarai.room.R;
@@ -68,11 +69,28 @@ public class MainActivityVM extends AndroidViewModel {
 
     public void insertTeams(){
         int idInsertar = getStadium();
+        Team team = new Team("Chicago Bulls", "Buen equipo", R.drawable.chi2,  idInsertar);
+        new AddUserAsyncTask(mAppDb).execute(team);
         mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi2,  idInsertar));
     }
 
     public LiveData<List<Team>> getmTeams() {
         return mTeams;
     }
-}
 
+
+    private static class AddUserAsyncTask extends AsyncTask<Team, Void, Void > {
+
+        private AppDatabase db;
+
+        public AddUserAsyncTask(AppDatabase database) {
+            db = database;
+        }
+
+        @Override
+        protected Void doInBackground(Team... teams) {
+            //db.teamDao().insertTeam(teams);
+            return null;
+        }
+    }
+}
