@@ -70,7 +70,7 @@ public class MainActivityRepository {
         getStadiumPrimeroAsync g = new getStadiumPrimeroAsync(mStadiumDao);
         g.execute();
 
-        return g.id ;//mStadiumDao.getStadium(1).getIdStadium();
+        return 1;//mStadiumDao.getStadium(1).getIdStadium();
     }
 
     /**
