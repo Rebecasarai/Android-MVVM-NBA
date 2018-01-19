@@ -215,6 +215,38 @@ public class StadiumDao_Impl implements StadiumDao {
   }
 
   @Override
+  public Stadium getStadiumPimero() {
+    final String _sql = "select * from stadiums where idStadium = 1";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
+    final Cursor _cursor = __db.query(_statement);
+    try {
+      final int _cursorIndexOfIdStadium = _cursor.getColumnIndexOrThrow("idStadium");
+      final int _cursorIndexOfName = _cursor.getColumnIndexOrThrow("name");
+      final int _cursorIndexOfAdress = _cursor.getColumnIndexOrThrow("adress");
+      final int _cursorIndexOfInfo = _cursor.getColumnIndexOrThrow("info");
+      final Stadium _result;
+      if(_cursor.moveToFirst()) {
+        final String _tmpName;
+        _tmpName = _cursor.getString(_cursorIndexOfName);
+        final String _tmpAdress;
+        _tmpAdress = _cursor.getString(_cursorIndexOfAdress);
+        final String _tmpInfo;
+        _tmpInfo = _cursor.getString(_cursorIndexOfInfo);
+        _result = new Stadium(_tmpName,_tmpAdress,_tmpInfo);
+        final int _tmpIdStadium;
+        _tmpIdStadium = _cursor.getInt(_cursorIndexOfIdStadium);
+        _result.setIdStadium(_tmpIdStadium);
+      } else {
+        _result = null;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
   public LiveData<List<Stadium>> getAllLive() {
     final String _sql = "SELECT * FROM stadiums";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);

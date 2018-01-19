@@ -2,30 +2,34 @@
 <instant-run
     abi="arm64-v8a,armeabi-v7a,armeabi"
     api-level="23"
-    build-mode="HOT_WARM"
+    build-mode="COLD"
     density="xxhdpi"
     format="10"
+    ir-eligibility="COMPATIBLE"
     plugin-version="3.0.1"
-    timestamp="1516396560634"
+    timestamp="1516399440189"
     token="-5116046586462719779"
-    verifier="COMPATIBLE" >
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="54130" />
+        duration="19875" />
     <task
         name="instant-run-dex"
-        duration="2533" />
+        duration="0" />
     <task
         name="instant-run-transform"
-        duration="1518" />
+        duration="1226" />
     <task
         name="verifier"
-        duration="973" />
+        duration="96" />
 
     <artifact
-        location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/reload-dex/debug/classes.dex"
-        type="RELOAD_DEX" />
+        location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+        type="SPLIT" />
+    <artifact
+        location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/outputs/apk/debug/app-debug.apk"
+        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
@@ -69,12 +73,51 @@
             type="SPLIT" />
     </build>
     <build
-        build-mode="HOT_WARM"
-        timestamp="1516396560634"
-        verifier="COMPATIBLE" >
+        build-mode="COLD"
+        ir-eligibility="CLASS_ADDED"
+        timestamp="1516398135017"
+        verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/reload-dex/debug/classes.dex"
-            type="RELOAD_DEX" />
+            location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
+            type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        timestamp="1516398473956"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+            type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="CLASS_ADDED"
+        timestamp="1516399318797"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/outputs/apk/debug/app-debug.apk"
+            type="SPLIT_MAIN" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="COMPATIBLE"
+        timestamp="1516399440189"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/outputs/apk/debug/app-debug.apk"
+            type="SPLIT_MAIN" />
     </build>
 
 </instant-run>

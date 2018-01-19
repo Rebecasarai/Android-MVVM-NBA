@@ -34,6 +34,9 @@ public interface StadiumDao {
     @Query("select * from stadiums where idStadium = :id")
     LiveData<Stadium> getStadiumLive(int id);
 
+    @Query("select * from stadiums where idStadium = 1")
+    Stadium getStadiumPimero();
+
 
     @Query("SELECT * FROM stadiums")
     LiveData<List<Stadium>> getAllLive();

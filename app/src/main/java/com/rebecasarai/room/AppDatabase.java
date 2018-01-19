@@ -44,8 +44,8 @@ public abstract class AppDatabase extends RoomDatabase {
      */
     private static AppDatabase buildDatabase(final Context context) {
         return Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "nba-database")
-                //TODO: remove this when lo haga todo asincrono, ya vereís:
-                .allowMainThreadQueries()
+                //Completed: remove this when lo haga asincrono, ya vereís:
+                //.allowMainThreadQueries()
                 .addCallback(new Callback() {
                     @Override
                     public void onCreate(@NonNull SupportSQLiteDatabase db) {

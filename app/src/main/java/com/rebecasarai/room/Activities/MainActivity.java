@@ -115,20 +115,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+    /**
+     * Abre el mapa para ver el stadium
+     * @param idStadium
+     */
     public void openMap(int idStadium){
 
         Stadium stadium = mViewModel.getStadium(idStadium);
 
-        // Create a Uri from an intent string. Use the result to create an Intent.
         Uri gmmIntentUri = Uri.parse("google.streetview:cbll="+stadium.getAdress());
 
-
-        // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-        // Make the Intent explicit by setting the Google Maps package
+
         mapIntent.setPackage("com.google.android.apps.maps");
 
-        // Attempt to start an activity that can handle the Intent
         startActivity(mapIntent);
     }
 

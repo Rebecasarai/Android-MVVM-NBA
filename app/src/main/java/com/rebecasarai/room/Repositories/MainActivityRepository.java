@@ -65,9 +65,12 @@ public class MainActivityRepository {
      * TODO: Hacer esto asincrono
      * @return
      */
-    public int getStadium(){
-        int id = mStadiumDao.getStadium(1).getIdStadium();
-        return id;
+    public int getStadiumPrimero(){
+
+        getStadiumPrimeroAsync g = new getStadiumPrimeroAsync(mStadiumDao);
+        g.execute();
+
+        return g.id ;//mStadiumDao.getStadium(1).getIdStadium();
     }
 
     /**
@@ -86,7 +89,7 @@ public class MainActivityRepository {
      * Siempre Chicago Bulls, con primer Id de stadium
      */
     public void insertTeams(){
-        int idInsertar = getStadium();
+        int idInsertar = getStadiumPrimero();
         Team team = new Team("Chicago Bulls", "Buen equipo", R.drawable.chi2,  idInsertar);
         new InsertTeamAsyncTask(mTeamDao).execute(team);
     }
@@ -185,6 +188,27 @@ public class MainActivityRepository {
             s = mStadiumDb.getStadium(params[0]);
             return s;
         }
+
+
+
+    }
+
+    private static class getStadiumPrimeroAsync extends AsyncTask<Void, Void, Integer > {
+
+        private StadiumDao mStadiumDb;
+        public Integer id;
+
+        public getStadiumPrimeroAsync(StadiumDao stadiumDb) {
+            mStadiumDb = stadiumDb;
+        }
+
+        @Override
+        protected Integer doInBackground(Void... voids) {
+            //db.stadiumDao().insertStadium(params[0]);
+            id = mStadiumDb.getStadiumPimero().getIdStadium();
+            return id;
+        }
+
 
 
 
