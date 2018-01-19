@@ -10,9 +10,8 @@
         android:title="@string/delete"
         app:showAsAction="always"/>
     <item android:id="@+id/map"
-        android:icon="@android:drawable/ic_delete"
-        android:title="@string/delete"
-        app:showAsAction="always"/>
+        android:icon="@android:drawable/ic_dialog_map"
+        android:title="@string/map"/>
     <item android:id="@+id/help"
         android:icon="@drawable/ic_launcher_background"
         android:title="@string/help" />

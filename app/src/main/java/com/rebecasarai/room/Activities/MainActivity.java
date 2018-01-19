@@ -23,6 +23,7 @@ import com.rebecasarai.room.AppDatabase;
 import com.rebecasarai.room.R;
 import com.rebecasarai.room.ViewModels.MainActivityVM;
 import com.rebecasarai.room.Views.TeamAdaptera;
+import com.rebecasarai.room.models.Stadium;
 import com.rebecasarai.room.models.Team;
 
 import java.util.List;
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         contextMenu.setHeaderTitle("Opciones de " + position);
         contextMenu.add(0, R.id.edit, 0, R.string.edit);
         contextMenu.add(0, R.id.delete, 1, R.string.delete);
-        contextMenu.add(0, R.id.delete, 1, R.string.delete);
+        contextMenu.add(0, R.id.map, 1, R.string.map);
     }
 
 
@@ -116,8 +117,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void openMap(int idStadium){
 
+        Stadium stadium = mViewModel.getStadium(idStadium);
+
         // Create a Uri from an intent string. Use the result to create an Intent.
-        Uri gmmIntentUri = Uri.parse("google.streetview:cbll="+(Team) mList.getAdapter().getItem(position));
+        Uri gmmIntentUri = Uri.parse("google.streetview:cbll="+stadium.getAdress());
 
 
         // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW

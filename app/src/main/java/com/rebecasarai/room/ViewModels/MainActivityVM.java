@@ -61,6 +61,11 @@ public class MainActivityVM extends AndroidViewModel {
         return id;
     }
 
+    public Stadium getStadium(int id){
+        return mAppDb.stadiumDao().getStadium(id);
+    }
+
+
     public void insertTeams(){
         int idInsertar = getStadium();
         mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi2,  idInsertar));
