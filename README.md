@@ -10,8 +10,8 @@ Android App that uses the Recommended app architecture, by using Android Archite
   - Live Data
   - Observables
 
-# Create, edit and delete teams and players. 
-## And even visit the team stadium with Google map's street view!
+  - Create, edit and delete teams and players. 
+  - And even visit the team stadium with Google map's street view!
 
 # Build:
   - Just import the project in Android Studio and run it!
