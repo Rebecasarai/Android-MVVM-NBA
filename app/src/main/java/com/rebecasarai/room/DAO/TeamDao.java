@@ -44,7 +44,7 @@ public interface TeamDao {
     @Delete
     void delete(Team team);
 
-    @Update
-    public void updateTeam(Team team);
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    int updateTeam(Team team);
 
 }

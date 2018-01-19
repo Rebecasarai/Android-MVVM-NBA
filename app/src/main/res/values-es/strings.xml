@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NBA Hub</string>
+    <string name="addTeam">Añadir equipo</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Borrar</string>
+    <string name="help">Ayuda</string>
+    <string name="map">Conocer Stadium</string>
+    <string name="title_activity_edit_team">EditTeamActivity</string>
+    <string name="nameerror">Introduzca un nombre valido</string>
+    <string name="descriptionerror">Untroduzca una descripción valida</string>
+    <string name="stadiumerror">Introduzca un numero ds stadium valido</string>
+</resources>

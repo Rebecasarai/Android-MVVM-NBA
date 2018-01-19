@@ -99,4 +99,10 @@ public class Stadium implements Parcelable {
         dest.writeString(adress);
         dest.writeString(info);
     }
+
+    public static Stadium[] insertarStadiums() {
+        return new Stadium[] {
+                new Stadium("United Center", "41.8817328,-87.6742026", "Good stadium"),
+        };
+    }
 }

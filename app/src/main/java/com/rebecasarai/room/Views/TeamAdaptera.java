@@ -1,18 +1,16 @@
 package com.rebecasarai.room.Views;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.rebecasarai.room.EditTeamActivity;
+import com.rebecasarai.room.Activities.EditTeamActivity;
 import com.rebecasarai.room.R;
 import com.rebecasarai.room.ViewModels.MainActivityVM;
 import com.rebecasarai.room.models.Team;
@@ -30,11 +28,13 @@ public class TeamAdaptera extends ArrayAdapter<Team> {
     MainActivityVM mViewModel;
     private Intent i;
 
-    public TeamAdaptera(Context context, FragmentActivity activity, List<Team> teams) {
+    public TeamAdaptera(Context context, MainActivityVM mViewModel, List<Team> teams) {
         super(context, 0, teams);
         this.context = context;
         this.teams = teams;
-        mViewModel = ViewModelProviders.of(activity).get(MainActivityVM.class);
+        //Que el view model de este adapatador sea el de la actividad que recibe como parametro al construir:
+        //mViewModel = ViewModelProviders.of(activity).get(MainActivityVM.class);
+        this.mViewModel = mViewModel;
     }
 
 
@@ -94,8 +94,9 @@ public class TeamAdaptera extends ArrayAdapter<Team> {
                 Toast.makeText(getContext(), "Edit "+mTeam.getIdTeam(),
                         Toast.LENGTH_LONG).show();
 
-                i= new Intent(getContext(), EditTeamActivity.class);
+                i= new Intent(context, EditTeamActivity.class);
                 i.putExtra("team",mTeam);
+                //Necesario para llamar a startActivity desde una clase y no una actividad
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
 

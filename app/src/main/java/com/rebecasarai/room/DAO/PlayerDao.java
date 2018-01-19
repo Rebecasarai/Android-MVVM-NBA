@@ -5,4 +5,5 @@ package com.rebecasarai.room.DAO;
  */
 
 public interface PlayerDao {
+
 }

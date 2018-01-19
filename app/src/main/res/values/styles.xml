@@ -17,8 +17,10 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <!-- Splash Screen theme. -->
+
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/nba_league_passlogo</item>
+        <item name="android:windowBackground">@drawable/splash_back</item>
     </style>
+
+
 </resources>

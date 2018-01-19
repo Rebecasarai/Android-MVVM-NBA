@@ -1,12 +1,12 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:drawable="@color/colorPrimary"/>
+    <item android:drawable="@color/colorPrimary" />
 
-    <item>
-        <bitmap
-            android:gravity="center"
-            android:src="@mipmap/ic_launcher"/>
-    </item>
+        <item>
+            <bitmap
+                android:gravity="center"
+
+                android:src="@drawable/nba_league_passlogo" />
+        </item>
 
 </layer-list>
