@@ -22,7 +22,6 @@ public class MainActivityRepository {
     private StadiumDao mStadiumDao;
     private LiveData<List<Team>> mAllTeams;
 
-
     public MainActivityRepository(Application application) {
         AppDatabase db = AppDatabase.getAppDatabase(application);
         mTeamDao = db.teamDao();
@@ -30,36 +29,62 @@ public class MainActivityRepository {
         mAllTeams = mTeamDao.getAllLive();
     }
 
+    /**
+     * Obtiene todos los equipos
+     * @return Lista de equipos
+     */
     public LiveData<List<Team>> getmTeams() {
         return mAllTeams;
     }
 
-
+    /**
+     * Elimina team recibiendo el objeto team, en TeamDao con la anotation Delete
+     * @param team
+     */
     public void delete(Team team){
         new deleteTeamAsync(mTeamDao).execute(team);
-
     }
 
+    /**
+     * Elimina equipo por id
+     * @param id del equipo a eliminar
+     */
     public void deleteByID(int id){
         new deleteTeamByIdAsync(mTeamDao).execute(id);
     }
 
+    /**
+     * Inserta 1 Stadium
+     */
     public void insertStadium(){
         new InsertStadiumAsync(mStadiumDao).execute(new Stadium("United Center", "41.8817328,-87.6742026","Great Stadium in 1901 W Madison St"));
     }
 
+    /**
+     * Obtiene el id del stadium
+     * TODO: Hacer esto asincrono
+     * @return
+     */
     public int getStadium(){
         int id = mStadiumDao.getStadium(1).getIdStadium();
         return id;
     }
 
+    /**
+     * Obtiene stadium por id
+     * @param id
+     * @return Stadium
+     */
     public Stadium getStadium(int id){
         return  mStadiumDao.getStadium(id);
         //return  new getStadiumAsync(mStadiumDao).execute(id);
         //Stadium s = (Stadium) new getStadiumAsync(mStadiumDao).execute(id); // mStadiumDao.getStadium(id);
     }
 
-
+    /**
+     * Inserta un equipo intantaneamente, con valores predeterminados.
+     * Siempre Chicago Bulls, con primer Id de stadium
+     */
     public void insertTeams(){
         int idInsertar = getStadium();
         Team team = new Team("Chicago Bulls", "Buen equipo", R.drawable.chi2,  idInsertar);
