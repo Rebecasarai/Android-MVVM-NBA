@@ -64,11 +64,12 @@ public class MainActivityRepository {
         int idInsertar = getStadium();
         Team team = new Team("Chicago Bulls", "Buen equipo", R.drawable.chi2,  idInsertar);
         new InsertTeamAsyncTask(mTeamDao).execute(team);
-        //mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi2,  idInsertar));
     }
 
 
-
+    /**
+     * Tarea asincrona que inserta el equipo recibiendolo por parametro
+     */
     private static class InsertTeamAsyncTask extends AsyncTask<Team, Void, Void > {
 
         private TeamDao mTeamDao;
@@ -82,10 +83,12 @@ public class MainActivityRepository {
             mTeamDao.insertTeam(params[0]);
             return null;
         }
-
-
     }
 
+
+    /**
+     * Tarea asincrona que inserta un estadio recibiendolo como parametro
+     */
     private static class InsertStadiumAsync extends AsyncTask<Stadium, Stadium, Void > {
 
         private StadiumDao mAsyncTaskDao;
@@ -101,6 +104,10 @@ public class MainActivityRepository {
         }
     }
 
+    /**
+     * Tarea asincrona que elimina un equipo por id.
+     * Recibe @param Integer
+     */
     private static class deleteTeamByIdAsync extends AsyncTask<Integer, Void, Void > {
 
         private TeamDao mTeamDao;
@@ -118,7 +125,10 @@ public class MainActivityRepository {
 
     }
 
-    private static class deleteTeamAsync extends AsyncTask<Team, Stadium, Void > {
+    /**
+     * Tarea asincrona que elimina un equipo reibiendo el objeto team
+     */
+    private static class deleteTeamAsync extends AsyncTask<Team, Void, Void > {
 
         private TeamDao mTeamDao;
 

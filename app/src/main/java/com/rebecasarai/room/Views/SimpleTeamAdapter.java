@@ -38,7 +38,6 @@ public class SimpleTeamAdapter extends ArrayAdapter<Team> {
     @Override
     public long getItemId(int pos) {
         return teams.get(pos).getIdTeam();
-        //just return 0 if your list items do not have an Id variable.
     }
 
     @Override
@@ -49,7 +48,6 @@ public class SimpleTeamAdapter extends ArrayAdapter<Team> {
         // Get the data item for this position
         team = (Team) getItem(position);
         if (row == null) {
-            //LayoutInflater inflater = getLayoutInflater();
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(R.layout.simple_team_row, parent, false);
             holder = new SimpleViewHolder(row, R.id.firstLine, R.id.secondLine, R.id.third, R.id.icon);
