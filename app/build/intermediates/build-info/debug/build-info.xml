@@ -6,25 +6,34 @@
     density="xxhdpi"
     format="10"
     plugin-version="3.0.1"
-    timestamp="1516387850224"
+    timestamp="1516396382443"
     token="-5116046586462719779"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="13204" />
+        duration="6958" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="1259" />
+        duration="1179" />
     <task
         name="verifier"
-        duration="130" />
+        duration="69" />
 
     <artifact
+        location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+        type="SPLIT" />
+    <artifact
         location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+        type="SPLIT" />
+    <artifact
+        location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+        type="SPLIT" />
+    <artifact
+        location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
         type="SPLIT" />
     <artifact
         location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/outputs/apk/debug/app-debug.apk"
@@ -48,24 +57,24 @@
         location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
-        type="SPLIT" />
-    <artifact
         location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
         type="SPLIT" />
 
     <build
         build-mode="FULL"
-        timestamp="1516387850224"
+        timestamp="1516396382443"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
+            location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+            type="SPLIT" />
+        <artifact
             location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
             type="SPLIT" />
         <artifact
             location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/outputs/apk/debug/app-debug.apk"
@@ -89,16 +98,7 @@
             location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
-            type="SPLIT" />
-        <artifact
             location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
             type="SPLIT" />
     </build>
 

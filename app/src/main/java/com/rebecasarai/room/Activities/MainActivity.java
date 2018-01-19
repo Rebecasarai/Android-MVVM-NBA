@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 TextView txt = (TextView) findViewById(R.id.third);
                 int num = Integer.parseInt((String) txt.getText());
                 //AppDatabase.getAppDatabase(this).teamDao().delete((Team) mList.getAdapter().getItem(position));
-                mViewModel.delete((Team) mList.getAdapter().getItem(position));
+                mViewModel.deleteTeam((Team) mList.getAdapter().getItem(position));
                 Toast.makeText(getApplicationContext(), "Delete " + num + " index " + index,
                         Toast.LENGTH_LONG).show();
                 return true;

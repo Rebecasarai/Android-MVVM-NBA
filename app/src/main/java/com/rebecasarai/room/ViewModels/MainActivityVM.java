@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 
 import com.rebecasarai.room.AppDatabase;
 import com.rebecasarai.room.R;
+import com.rebecasarai.room.Repositories.MainActivityRepository;
 import com.rebecasarai.room.models.Stadium;
 import com.rebecasarai.room.models.Team;
 
@@ -22,56 +23,49 @@ public class MainActivityVM extends AndroidViewModel {
 
     private final LiveData<List<Team>> mTeams;
 
+    private MainActivityRepository mRepository;
 
-    private AppDatabase mAppDb;
 
     public MainActivityVM(Application application) {
         super(application);
 
-        mAppDb = AppDatabase.getAppDatabase(application);
-        mTeams = mAppDb.teamDao().getAllLive();
-    }
-
-
-    public void insertTeam(Team team){
-        mAppDb.teamDao().insertTeam(team);
+        mRepository = new MainActivityRepository(application);
+        mTeams = mRepository.getmTeams();
 
     }
 
-    public void delete(Team team){
-        mAppDb.teamDao().insertTeam(team);
-
+    public void deleteTeam(Team team){
+        mRepository.delete(team);
     }
 
     public void deleteByID(int id){
-        mAppDb.teamDao().deleteById(id);
-
+        //new deleteTeamAsync(mAppDb).execute(id);
+        mRepository.deleteByID(id);
     }
 
     public void insertStadium(){
-        mAppDb.stadiumDao().insertStadium(new Stadium("United Center", "41.8817328,-87.6742026","Great Stadium in 1901 W Madison St"));
-    }
-
-    public void deleteAll(){
-        mAppDb.teamDao().deleteAll();
-
+        mRepository.insertStadium();
+       // new InsertStadiumAsync(mAppDb).execute(new Stadium("United Center", "41.8817328,-87.6742026","Great Stadium in 1901 W Madison St"));
     }
 
     public int getStadium(){
-        int id = mAppDb.stadiumDao().getStadium(1).getIdStadium();
+        int id = mRepository.getStadium(1).getIdStadium();
         return id;
     }
 
     public Stadium getStadium(int id){
-        return mAppDb.stadiumDao().getStadium(id);
+        //Stadium s = new getStadiumAsync(mAppDb).execute(id);
+        //return  new getStadiumAsync(mAppDb).execute(id);
+        return mRepository.getStadium(id);
     }
 
 
     public void insertTeams(){
-        int idInsertar = getStadium();
-        Team team = new Team("Chicago Bulls", "Buen equipo", R.drawable.chi2,  idInsertar);
-        new AddUserAsyncTask(mAppDb).execute(team);
-        mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi2,  idInsertar));
+        //int idInsertar = getStadium();
+        //Team team = new Team("Chicago Bulls", "Buen equipo", R.drawable.chi2,  idInsertar);
+        //new InsertTeamAsyncTask(mAppDb).execute(team);
+        mRepository.insertTeams();
+        //mAppDb.teamDao().insertTeam(new Team("Chicago Bulls", "Buen equipo", R.drawable.chi2,  idInsertar));
     }
 
     public LiveData<List<Team>> getmTeams() {
@@ -79,18 +73,73 @@ public class MainActivityVM extends AndroidViewModel {
     }
 
 
-    private static class AddUserAsyncTask extends AsyncTask<Team, Void, Void > {
+    private static class InsertTeamAsyncTask extends AsyncTask<Team, Void, Void > {
 
         private AppDatabase db;
 
-        public AddUserAsyncTask(AppDatabase database) {
+        public InsertTeamAsyncTask(AppDatabase database) {
             db = database;
         }
 
         @Override
-        protected Void doInBackground(Team... teams) {
-            //db.teamDao().insertTeam(teams);
+        protected Void doInBackground(Team... params) {
+            db.teamDao().insertTeam(params[0]);
+            return null;
+        }
+
+
+    }
+
+    private static class InsertStadiumAsync extends AsyncTask<Stadium, Stadium, Void > {
+
+        private AppDatabase db;
+
+        public InsertStadiumAsync(AppDatabase database) {
+            db = database;
+        }
+
+        @Override
+        protected Void doInBackground(Stadium... params) {
+            db.stadiumDao().insertStadium(params[0]);
             return null;
         }
     }
+
+    private static class deleteTeamAsync extends AsyncTask<Integer, Stadium, Void > {
+
+        private AppDatabase db;
+
+        public deleteTeamAsync(AppDatabase database) {
+            db = database;
+        }
+
+        @Override
+        protected Void doInBackground(Integer... params) {
+            db.teamDao().deleteById(params[0]);
+            return null;
+        }
+
+
+    }
+
+    private static class getStadiumAsync extends AsyncTask<Integer, Stadium, Stadium > {
+
+        private AppDatabase db;
+        public Stadium s;
+
+        public getStadiumAsync(AppDatabase database) {
+            db = database;
+        }
+
+        @Override
+        protected Stadium doInBackground(Integer... params) {
+            //db.stadiumDao().insertStadium(params[0]);
+            s = db.stadiumDao().getStadium(params[0]);
+            return s;
+        }
+
+
+    }
+
+
 }
