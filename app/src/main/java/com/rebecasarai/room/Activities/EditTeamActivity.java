@@ -108,9 +108,11 @@ public class EditTeamActivity extends AppCompatActivity implements View.OnClickL
             case R.id.fab:
                 updateTeam();
 
-                i = new Intent(this, MainActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
+                if (awesomeValidation.validate()) {
+                    i = new Intent(this, MainActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
+                }
             break;
         }
 

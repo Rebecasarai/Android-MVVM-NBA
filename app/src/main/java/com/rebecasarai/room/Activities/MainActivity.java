@@ -31,7 +31,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ListView mList;
-    //private List<Team> mTeams;
+    private List<Team> mTeams;
     private TextView mText;
     private Intent i;
     MainActivityVM mViewModel;
@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mViewModel = ViewModelProviders.of(this).get(MainActivityVM.class);
 
         mViewModel.getmTeams().observe(this, new Observer<List<Team>>() {
+
+
             @Override
             public void onChanged(@NonNull final List<Team> teams) {
 
@@ -58,8 +60,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     Log.v("Team: ", teams.get(i).toString());
                 }
                 a = new TeamAdaptera(getApplicationContext(), mViewModel, teams);
-                //TODO: Set contador para solo crear TeamAdapter una vez
                 mList.setAdapter(a);
+
             }
         });
 

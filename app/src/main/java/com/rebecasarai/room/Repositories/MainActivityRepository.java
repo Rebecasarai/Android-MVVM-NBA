@@ -79,7 +79,11 @@ public class MainActivityRepository {
      * @return Stadium
      */
     public Stadium getStadium(int id){
+
+        /*getStadiumAsync n = new getStadiumAsync(mStadiumDao);
+        n.execute(id);*/
         return  mStadiumDao.getStadium(id);
+        //getStadiumAsync n = new getStadiumAsync(id) ;
         //return  new getStadiumAsync(mStadiumDao).execute(id);
         //Stadium s = (Stadium) new getStadiumAsync(mStadiumDao).execute(id); // mStadiumDao.getStadium(id);
     }
@@ -173,7 +177,7 @@ public class MainActivityRepository {
 
     }
 
-    private static class getStadiumAsync extends AsyncTask<Integer, Stadium, Stadium > {
+    private static class getStadiumAsync extends AsyncTask<Integer, Void, Stadium > {
 
         private StadiumDao mStadiumDb;
         public Stadium s;
@@ -181,11 +185,18 @@ public class MainActivityRepository {
         public getStadiumAsync(StadiumDao stadiumDb) {
             mStadiumDb = stadiumDb;
         }
-
+/*
         @Override
         protected Stadium doInBackground(Integer... params) {
             //db.stadiumDao().insertStadium(params[0]);
             s = mStadiumDb.getStadium(params[0]);
+            return s;
+        }*/
+
+        @Override
+        protected Stadium doInBackground(Integer... params) {
+
+            Stadium s = mStadiumDb.getStadium(params[0]);
             return s;
         }
 
