@@ -26,12 +26,13 @@ import com.rebecasarai.room.Views.TeamAdaptera;
 import com.rebecasarai.room.models.Stadium;
 import com.rebecasarai.room.models.Team;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ListView mList;
-    private List<Team> mTeams;
+    private List<Team> mTeams = new ArrayList<>();
     private TextView mText;
     private Intent i;
     MainActivityVM mViewModel;
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         mViewModel = ViewModelProviders.of(this).get(MainActivityVM.class);
 
+        //mTeamAdapater = new TeamAdaptera(getApplicationContext(), mViewModel, mTeams);
+
         mViewModel.getmTeams().observe(this, new Observer<List<Team>>() {
             @Override
             public void onChanged(@NonNull final List<Team> teams) {
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 mTeamAdapater = new TeamAdaptera(getApplicationContext(), mViewModel, teams);
 
                 mTeamAdapater.setData(teams);
+                mTeamAdapater.notifyDataSetChanged();
                 mList.setAdapter(mTeamAdapater);
 
             }
