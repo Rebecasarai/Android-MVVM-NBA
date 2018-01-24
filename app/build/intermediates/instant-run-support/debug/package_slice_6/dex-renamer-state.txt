@@ -1,4 +1,4 @@
-#Wed Jan 24 12:33:14 CET 2018
-base.0=/home/rsgonzalez/Escritorio/Android-MVVM-NBA/app/build/intermediates/transforms/dexMerger/debug/64
+#Wed Jan 24 12:45:34 CET 2018
+base.0=/home/rsgonzalez/android/Android-MVVM-NBA/app/build/intermediates/transforms/dexMerger/debug/64
 path.0=classes.dex
 renamed.0=classes.dex
