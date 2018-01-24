@@ -1,4 +1,4 @@
-#Fri Jan 19 22:42:33 CET 2018
+#Wed Jan 24 12:33:15 CET 2018
 path.1=classes.dex
 path.0=classes.dex
 renamed.5=classes6.dex
@@ -7,12 +7,12 @@ renamed.3=classes4.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
-base.5=/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/transforms/dexMerger/debug/74
-base.4=/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/transforms/dexMerger/debug/71
-base.3=/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/transforms/dexMerger/debug/70
-base.2=/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/transforms/dexMerger/debug/73
-base.1=/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/transforms/dexMerger/debug/72
-base.0=/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/transforms/dexMerger/debug/69
+base.5=/home/rsgonzalez/Escritorio/Android-MVVM-NBA/app/build/intermediates/transforms/dexMerger/debug/76
+base.4=/home/rsgonzalez/Escritorio/Android-MVVM-NBA/app/build/intermediates/transforms/dexMerger/debug/79
+base.3=/home/rsgonzalez/Escritorio/Android-MVVM-NBA/app/build/intermediates/transforms/dexMerger/debug/77
+base.2=/home/rsgonzalez/Escritorio/Android-MVVM-NBA/app/build/intermediates/transforms/dexMerger/debug/80
+base.1=/home/rsgonzalez/Escritorio/Android-MVVM-NBA/app/build/intermediates/transforms/dexMerger/debug/78
+base.0=/home/rsgonzalez/Escritorio/Android-MVVM-NBA/app/build/intermediates/transforms/dexMerger/debug/81
 path.5=classes.dex
 path.4=classes.dex
 path.3=classes.dex

@@ -37,6 +37,10 @@ public class TeamAdaptera extends ArrayAdapter<Team> {
         this.mViewModel = mViewModel;
     }
 
+    public void setData(List<Team> teams){
+        this.teams = teams;
+    }
+
 
     @Override
     public Team getItem(int pos) {

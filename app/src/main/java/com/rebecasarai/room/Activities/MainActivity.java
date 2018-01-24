@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private TextView mText;
     private Intent i;
     MainActivityVM mViewModel;
-    TeamAdaptera a;
+    TeamAdaptera mTeamAdapater;
     int position;
     int index;
 
@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         mViewModel = ViewModelProviders.of(this).get(MainActivityVM.class);
 
+        mTeamAdapater = new TeamAdaptera(getApplicationContext(), mViewModel, mTeams);
+
         mViewModel.getmTeams().observe(this, new Observer<List<Team>>() {
-
-
             @Override
             public void onChanged(@NonNull final List<Team> teams) {
 
@@ -59,8 +59,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 for (int i = 0; i < teams.size(); i++) {
                     Log.v("Team: ", teams.get(i).toString());
                 }
-                a = new TeamAdaptera(getApplicationContext(), mViewModel, teams);
-                mList.setAdapter(a);
+                //mTeamAdapater = new TeamAdaptera(getApplicationContext(), mViewModel, teams);
+
+                mTeamAdapater.setData(teams);
+                mList.setAdapter(mTeamAdapater);
 
             }
         });
