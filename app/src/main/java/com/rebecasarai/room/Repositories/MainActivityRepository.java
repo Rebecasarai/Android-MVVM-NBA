@@ -75,6 +75,20 @@ public class MainActivityRepository {
 
     /**
      * Obtiene stadium por id
+     * @return Stadium
+     */
+    public LiveData<List<Stadium>> getStadiums(){
+
+        /*getStadiumAsync n = new getStadiumAsync(mStadiumDao);
+        n.execute(id);*/
+        return  mStadiumDao.getAllLive();
+        //getStadiumAsync n = new getStadiumAsync(id) ;
+        //return  new getStadiumAsync(mStadiumDao).execute(id);
+        //Stadium s = (Stadium) new getStadiumAsync(mStadiumDao).execute(id); // mStadiumDao.getStadium(id);
+    }
+
+    /**
+     * Obtiene stadium por id
      * @param id
      * @return Stadium
      */
@@ -95,6 +109,11 @@ public class MainActivityRepository {
     public void insertTeams(){
         int idInsertar = getStadiumPrimero();
         Team team = new Team("Chicago Bulls", "Buen equipo", R.drawable.chi2,  idInsertar);
+        new InsertTeamAsyncTask(mTeamDao).execute(team);
+    }
+
+
+    public void insertTeam(Team team){
         new InsertTeamAsyncTask(mTeamDao).execute(team);
     }
 
@@ -220,10 +239,8 @@ public class MainActivityRepository {
             return id;
         }
 
-
-
-
     }
+
 
 
 

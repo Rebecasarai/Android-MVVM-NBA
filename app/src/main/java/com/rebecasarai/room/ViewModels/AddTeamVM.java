@@ -6,6 +6,7 @@ import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
 import com.rebecasarai.room.AppDatabase;
+import com.rebecasarai.room.Repositories.MainActivityRepository;
 import com.rebecasarai.room.models.Stadium;
 import com.rebecasarai.room.models.Team;
 
@@ -19,19 +20,19 @@ public class AddTeamVM extends AndroidViewModel {
 
     private LiveData<List<Team>> mTeams;
     private LiveData<List<Stadium>> mStadiums;
-
-    private AppDatabase mAppDb;
+    private MainActivityRepository mRespository;
+    //private AppDatabase mAppDb;
 
     public AddTeamVM(Application application) {
         super(application);
 
-        mAppDb = AppDatabase.getAppDatabase(application);
-        mTeams = mAppDb.teamDao().getAllLive();
-        mStadiums = mAppDb.stadiumDao().getAllLive();
+        mRespository = new MainActivityRepository(application);
+        mTeams = mRespository.getmTeams();
+        mStadiums = mRespository.getStadiums();
     }
 
     public void insertTeam(Team team){
-        new InsertTeamAsyncTask(mAppDb).execute(team);
+        mRespository.insertTeam(team);
     }
 
 
@@ -44,22 +45,6 @@ public class AddTeamVM extends AndroidViewModel {
     }
 
 
-    private static class InsertTeamAsyncTask extends AsyncTask<Team, Void, Void > {
-
-        private AppDatabase db;
-
-        public InsertTeamAsyncTask(AppDatabase database) {
-            db = database;
-        }
-
-        @Override
-        protected Void doInBackground(Team... params) {
-            db.teamDao().insertTeam(params[0]);
-            return null;
-        }
-
-
-    }
 
 
 }
