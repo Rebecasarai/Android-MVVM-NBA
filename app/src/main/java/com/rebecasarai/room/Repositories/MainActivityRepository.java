@@ -112,6 +112,10 @@ public class MainActivityRepository {
         new InsertTeamAsyncTask(mTeamDao).execute(team);
     }
 
+    public void updateTeam(Team team){
+        mTeamDao.updateTeam(team);
+    }
+
 
     public void insertTeam(Team team){
         new InsertTeamAsyncTask(mTeamDao).execute(team);
