@@ -23,6 +23,8 @@ public class MainActivityVM extends AndroidViewModel {
 
     private final LiveData<List<Team>> mTeams;
 
+    private int counter;
+
     private MainActivityRepository mRepository;
 
 
@@ -31,6 +33,12 @@ public class MainActivityVM extends AndroidViewModel {
 
         mRepository = new MainActivityRepository(application);
         mTeams = mRepository.getmTeams();
+    }
+
+
+
+    public int getCounter() {
+        return counter;
     }
 
     public void deleteTeam(Team team){

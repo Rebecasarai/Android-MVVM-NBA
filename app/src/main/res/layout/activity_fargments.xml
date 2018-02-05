@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.rebecasarai.room.FragmentsActivity">
+
+
+    <fragment android:name="com.rebecasarai.room.Fragments.MasterFragment"
+        android:id="@+id/master"
+        android:layout_weight="10"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <fragment android:name="com.rebecasarai.room.Fragments.MasterFragment"
+    android:id="@+id/fragment"
+    android:layout_weight="10"
+    android:layout_width="match_parent"
+    android:layout_height="0dp" />
+</LinearLayout>
