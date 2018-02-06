@@ -29,6 +29,10 @@ public class FragmentsVM extends AndroidViewModel{
         mTeams = mRepository.getmTeams();
     }
 
+    public List<Team> getTeamsNotLive(){
+        return mRepository.getmTeamsNoTLive();
+    }
+
     public String getTexto() {
         return texto;
     }

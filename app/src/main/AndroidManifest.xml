@@ -32,7 +32,7 @@
         <activity android:name=".Activities.FragmentsActivity">
 
         </activity>
-        <activity android:name=".DetailsActivity"> <intent-filter>
+        <activity android:name=".Activities.DetailsActivity"> <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />

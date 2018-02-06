@@ -1,19 +1,25 @@
-package com.rebecasarai.room;
+package com.rebecasarai.room.Activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.rebecasarai.room.Fragments.MasterFragment;
 import com.rebecasarai.room.Fragments.PruebaFragment;
 import com.rebecasarai.room.Fragments.TeamFragment;
 import com.rebecasarai.room.Fragments.dummy.DummyContent;
+import com.rebecasarai.room.R;
 import com.rebecasarai.room.ViewModels.AddTeamVM;
 import com.rebecasarai.room.ViewModels.FragmentsVM;
+import com.rebecasarai.room.models.Team;
 
 public class DetailsActivity extends AppCompatActivity implements TeamFragment.OnListFragmentInteractionListener {
 
@@ -33,15 +39,13 @@ public class DetailsActivity extends AppCompatActivity implements TeamFragment.O
         TeamFragment fragment = new TeamFragment();
         fragmentTransaction.add(R.id.layoutDetails, fragment);
         fragmentTransaction.commit();
-
-
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(Team item) {
         Toast.makeText(getApplicationContext(), " index " + item,
                 Toast.LENGTH_LONG).show();
-        mViewModel.setTexto(item.content);
+        mViewModel.setTexto(item.getName());
 
         // Create new fragment and transaction
         Fragment newFragment = new PruebaFragment();
@@ -55,5 +59,35 @@ public class DetailsActivity extends AppCompatActivity implements TeamFragment.O
         // Commit the transaction
         transaction.commit();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.add_team:
+                intent = new Intent(this, AddTeamActivity.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.add4:
+                mViewModel.insertTeams();
+                return true;
+
+            case R.id.help:
+
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

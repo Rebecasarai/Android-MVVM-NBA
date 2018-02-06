@@ -4,6 +4,10 @@
         "source": "/home/rsgonzalez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/7fa6a0daf49360cce196e7969f695181/res/drawable-xhdpi-v4/abc_tab_indicator_mtrl_alpha.9.png"
     },
     {
+        "merged": "/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/res/merged/debug/layout_fragment_team.xml.flat",
+        "source": "/Users/rebecagonzalez/AndroidStudioProjects/Room/app/src/main/res/layout/fragment_team.xml"
+    },
+    {
         "merged": "/home/rsgonzalez/android/Android-MVVM-NBA/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_design_ic_visibility_off.png.flat",
         "source": "/home/rsgonzalez/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/2004089cdf372de769b4e9e74dddf962/res/drawable-mdpi-v4/design_ic_visibility_off.png"
     },
@@ -3412,6 +3416,10 @@
         "source": "/home/rsgonzalez/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/3b12fb4a02748f13c2d2f2e826edcd13/res/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png"
     },
     {
+        "merged": "/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/res/merged/debug/layout_activity_fragments.xml.flat",
+        "source": "/Users/rebecagonzalez/AndroidStudioProjects/Room/app/src/main/res/layout/activity_fragments.xml"
+    },
+    {
         "merged": "/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/res/merged/debug/color_abc_tint_default.xml.flat",
         "source": "/Users/rebecagonzalez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/97b5f34af7554554dd483921d5bc14dc/res/color/abc_tint_default.xml"
     },
@@ -3438,6 +3446,10 @@
     {
         "merged": "/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
         "source": "/Users/rebecagonzalez/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/5aac263be76fb7bc8994184d8762d93f/res/drawable-mdpi-v4/notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/res/merged/debug/layout_fragment_prueba.xml.flat",
+        "source": "/Users/rebecagonzalez/AndroidStudioProjects/Room/app/src/main/res/layout/fragment_prueba.xml"
     },
     {
         "merged": "/home/rsgonzalez/android/Android-MVVM-NBA/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_notification_bg_normal.9.png.flat",
@@ -3750,6 +3762,10 @@
     {
         "merged": "/home/rsgonzalez/Escritorio/Android-MVVM-NBA/app/build/intermediates/res/merged/debug/drawable_design_fab_background.xml.flat",
         "source": "/home/rsgonzalez/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/2004089cdf372de769b4e9e74dddf962/res/drawable/design_fab_background.xml"
+    },
+    {
+        "merged": "/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/res/merged/debug/layout_activity_details.xml.flat",
+        "source": "/Users/rebecagonzalez/AndroidStudioProjects/Room/app/src/main/res/layout/activity_details.xml"
     },
     {
         "merged": "/home/rsgonzalez/android/Android-MVVM-NBA/app/build/intermediates/res/merged/debug/color_abc_tint_spinner.xml.flat",
@@ -4574,6 +4590,10 @@
     {
         "merged": "/home/rsgonzalez/android/Android-MVVM-NBA/app/build/intermediates/res/merged/debug/layout_notification_action_tombstone.xml.flat",
         "source": "/home/rsgonzalez/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/3b12fb4a02748f13c2d2f2e826edcd13/res/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/res/merged/debug/layout_fragment_team_list.xml.flat",
+        "source": "/Users/rebecagonzalez/AndroidStudioProjects/Room/app/src/main/res/layout/fragment_team_list.xml"
     },
     {
         "merged": "/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",

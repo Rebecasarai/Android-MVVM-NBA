@@ -1,9 +1,12 @@
 package com.rebecasarai.room.Fragments;
 
 import android.app.Fragment;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,10 +15,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.rebecasarai.room.Activities.DetailsActivity;
 import com.rebecasarai.room.R;
 import com.rebecasarai.room.Fragments.dummy.DummyContent;
 import com.rebecasarai.room.Fragments.dummy.DummyContent.DummyItem;
 import com.rebecasarai.room.ViewModels.FragmentsVM;
+import com.rebecasarai.room.models.Team;
 
 import java.util.List;
 
@@ -26,6 +31,8 @@ import java.util.List;
  * interface.
  */
 public class TeamFragment extends Fragment {
+
+    View view;
 
     FragmentsVM mViewModel;
     // TODO: Customize parameter argument names
@@ -54,7 +61,7 @@ public class TeamFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = ViewModelProviders.of((FragmentActivity) getActivity()).get(FragmentsVM.class);
+       // mViewModel = ViewModelProviders.of((FragmentActivity) getActivity()).get(FragmentsVM.class);
 
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
@@ -64,19 +71,27 @@ public class TeamFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_team_list, container, false);
+        view = inflater.inflate(R.layout.fragment_team_list, container, false);
 
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+        mViewModel = ViewModelProviders.of((FragmentActivity) getActivity()).get(FragmentsVM.class);
+        mViewModel.getmTeams().observe((FragmentActivity) getActivity(), new Observer<List<Team>>() {
+            @Override
+            public void onChanged(@Nullable List<Team> teams) {
+
+                if (view instanceof RecyclerView) {
+                    Context context = view.getContext();
+                    RecyclerView recyclerView = (RecyclerView) view;
+                    if (mColumnCount <= 1) {
+                        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                    } else {
+                        recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                    }
+                    recyclerView.setAdapter(new MyTeamRecyclerViewAdapter(teams, mListener));
+                }
+
             }
-            recyclerView.setAdapter(new MyTeamRecyclerViewAdapter(DummyContent.ITEMS, mListener));
-        }
+        });
+
         return view;
     }
 
@@ -111,7 +126,7 @@ public class TeamFragment extends Fragment {
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
 
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(Team item);
 
     }
 }

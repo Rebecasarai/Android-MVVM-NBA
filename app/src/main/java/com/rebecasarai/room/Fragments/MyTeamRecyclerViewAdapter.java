@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.rebecasarai.room.Fragments.TeamFragment.OnListFragmentInteractionListener;
 import com.rebecasarai.room.Fragments.dummy.DummyContent.DummyItem;
 import com.rebecasarai.room.R;
+import com.rebecasarai.room.models.Team;
 
 import java.util.List;
 
@@ -19,11 +20,13 @@ import java.util.List;
  */
 public class MyTeamRecyclerViewAdapter extends RecyclerView.Adapter<MyTeamRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    //private final List<DummyItem> mValues;
+
+    private final List<Team> mTeams;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyTeamRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
-        mValues = items;
+    public MyTeamRecyclerViewAdapter(List<Team> items, OnListFragmentInteractionListener listener) {
+        mTeams = items;
         mListener = listener;
     }
 
@@ -36,9 +39,9 @@ public class MyTeamRecyclerViewAdapter extends RecyclerView.Adapter<MyTeamRecycl
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mItem = mTeams.get(position);
+        holder.mIdView.setText(mTeams.get(position).getName());
+        holder.mContentView.setText(mTeams.get(position).getDescription());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,14 +57,14 @@ public class MyTeamRecyclerViewAdapter extends RecyclerView.Adapter<MyTeamRecycl
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return mTeams.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public Team mItem;
 
         public ViewHolder(View view) {
             super(view);

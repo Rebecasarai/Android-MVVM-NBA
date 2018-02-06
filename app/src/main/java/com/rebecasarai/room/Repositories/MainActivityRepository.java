@@ -37,6 +37,10 @@ public class MainActivityRepository {
         return mAllTeams;
     }
 
+    public List<Team> getmTeamsNoTLive() {
+        return mTeamDao.getAll();
+    }
+
     public Team getFirstTeam() {
         return  mTeamDao.getAll().get(0);
     }
