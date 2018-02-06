@@ -34,15 +34,17 @@
         <activity
             android:name="com.rebecasarai.room.Activities.SplashActivity"
             android:theme="@style/SplashTheme" >
+        </activity>
+        <activity
+            android:name="com.rebecasarai.room.Activities.LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity android:name="com.rebecasarai.room.FragmentsActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.rebecasarai.room.Activities.LoginActivity"
-            android:label="@string/title_activity_login" />
 
         <meta-data
             android:name="android.support.VERSION"
