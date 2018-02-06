@@ -4,18 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.rebecasarai.room.FragmentsActivity">
+    tools:context="com.rebecasarai.room.Activities.FragmentsActivity">
 
 
     <fragment android:name="com.rebecasarai.room.Fragments.MasterFragment"
         android:id="@+id/master"
         android:layout_weight="10"
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:layout_height="0dp"
+        android:layout_marginBottom="40dp"/>
 
-    <fragment android:name="com.rebecasarai.room.Fragments.MasterFragment"
-    android:id="@+id/fragment"
-    android:layout_weight="10"
-    android:layout_width="match_parent"
-    android:layout_height="0dp" />
+    <fragment android:name="com.rebecasarai.room.Fragments.DetailsFragment"
+        android:id="@+id/fragment"
+        android:layout_weight="10"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
 </LinearLayout>

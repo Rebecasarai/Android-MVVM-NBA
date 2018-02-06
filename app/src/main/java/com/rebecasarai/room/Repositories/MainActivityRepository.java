@@ -37,6 +37,15 @@ public class MainActivityRepository {
         return mAllTeams;
     }
 
+    public Team getFirstTeam() {
+        return  mTeamDao.getAll().get(0);
+    }
+
+    public LiveData<Team> getTeamByIdLive(int id){
+        return mTeamDao.getTeamByIdLive(id);
+    }
+
+
     /**
      * Elimina team recibiendo el objeto team, en TeamDao con la anotation Delete
      * @param team
@@ -72,6 +81,8 @@ public class MainActivityRepository {
 
         return 1;//mStadiumDao.getStadium(1).getIdStadium();
     }
+
+
 
     /**
      * Obtiene stadium por id

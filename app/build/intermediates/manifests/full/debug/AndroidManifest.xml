@@ -33,12 +33,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.rebecasarai.room.Activities.SplashActivity"
-            android:theme="@style/SplashTheme" >
-        </activity>
+            android:theme="@style/SplashTheme" />
         <activity
             android:name="com.rebecasarai.room.Activities.LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name="com.rebecasarai.room.FragmentsActivity" >
+        <activity android:name="com.rebecasarai.room.Activities.FragmentsActivity" >
+        </activity>
+        <activity android:name="com.rebecasarai.room.DetailsActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

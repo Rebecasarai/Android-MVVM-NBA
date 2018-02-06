@@ -16,11 +16,11 @@ import java.util.List;
 
 public class FragmentsVM extends AndroidViewModel{
     private final LiveData<List<Team>> mTeams;
-
+    private LiveData<Team> selectedTeam;
+    private String texto;
+    private int colorBackground;
     private int counter;
-
     private MainActivityRepository mRepository;
-
 
     public FragmentsVM(Application application) {
         super(application);
@@ -29,8 +29,28 @@ public class FragmentsVM extends AndroidViewModel{
         mTeams = mRepository.getmTeams();
     }
 
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
+
+    public LiveData<Team> getSelectedTeam() {
+        return selectedTeam;
+    }
+
+    public void setSelectedTeam(Team selectedTeam) {
+        this.selectedTeam = mRepository.getTeamByIdLive(selectedTeam.getIdTeam());
+    }
+
     public int getCounter() {
         return counter;
+    }
+
+    public int getColorBackground() {
+        return colorBackground;
     }
 
     public void deleteTeam(Team team){
@@ -64,5 +84,8 @@ public class FragmentsVM extends AndroidViewModel{
     }
 
 
+    public Team getFirstTeam(){
+        return  mRepository.getFirstTeam();
+    }
 
 }

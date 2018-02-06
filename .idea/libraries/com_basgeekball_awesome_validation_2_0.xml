@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="com.basgeekball:awesome-validation-2.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/awesome-validation-2.0.aar/f677139b3d486c9d2882e934954eb116/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/awesome-validation-2.0.aar/f677139b3d486c9d2882e934954eb116/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/awesome-validation-2.0.aar/169f21d58dbdbb09f0cddc01c4d5442b/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/awesome-validation-2.0.aar/169f21d58dbdbb09f0cddc01c4d5442b/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

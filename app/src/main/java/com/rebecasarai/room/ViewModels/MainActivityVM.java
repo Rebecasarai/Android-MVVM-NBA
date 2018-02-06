@@ -22,7 +22,7 @@ import java.util.List;
 public class MainActivityVM extends AndroidViewModel {
 
     private final LiveData<List<Team>> mTeams;
-
+    private Team selectedTeam;
     private int counter;
 
     private MainActivityRepository mRepository;
@@ -34,8 +34,6 @@ public class MainActivityVM extends AndroidViewModel {
         mRepository = new MainActivityRepository(application);
         mTeams = mRepository.getmTeams();
     }
-
-
 
     public int getCounter() {
         return counter;

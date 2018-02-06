@@ -19,6 +19,7 @@ public interface TeamDao {
     @Query("SELECT * FROM teams")
     List<Team> getAll();
 
+
     @Query("SELECT * FROM teams")
     LiveData<List<Team>> getAllLive();
 
