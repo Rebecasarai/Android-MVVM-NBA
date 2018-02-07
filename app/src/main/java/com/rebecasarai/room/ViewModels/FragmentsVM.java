@@ -3,6 +3,7 @@ package com.rebecasarai.room.ViewModels;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 
 import com.rebecasarai.room.Repositories.MainActivityRepository;
 import com.rebecasarai.room.models.Stadium;
@@ -16,21 +17,16 @@ import java.util.List;
 
 public class FragmentsVM extends AndroidViewModel{
     private final LiveData<List<Team>> mTeams;
-    private LiveData<Team> selectedTeam;
+    private MutableLiveData<Team> selectedTeam = new MutableLiveData<>();
     private String texto;
-    private int colorBackground;
-    private int counter;
     private MainActivityRepository mRepository;
 
     public FragmentsVM(Application application) {
         super(application);
 
         mRepository = new MainActivityRepository(application);
-        mTeams = mRepository.getmTeams();
-    }
 
-    public List<Team> getTeamsNotLive(){
-        return mRepository.getmTeamsNoTLive();
+        mTeams = mRepository.getmTeams();
     }
 
     public String getTexto() {
@@ -41,41 +37,17 @@ public class FragmentsVM extends AndroidViewModel{
         this.texto = texto;
     }
 
-    public LiveData<Team> getSelectedTeam() {
-        return selectedTeam;
+    public MutableLiveData<Team> getSelectedTeam() {
+        return this.selectedTeam;
     }
 
     public void setSelectedTeam(Team selectedTeam) {
-        this.selectedTeam = mRepository.getTeamByIdLive(selectedTeam.getIdTeam());
-    }
-
-    public int getCounter() {
-        return counter;
-    }
-
-    public int getColorBackground() {
-        return colorBackground;
-    }
-
-    public void deleteTeam(Team team){
-        mRepository.delete(team);
-    }
-
-    public void deleteByID(int id){
-        mRepository.deleteByID(id);
-    }
-
-    public void insertStadium(){
-        mRepository.insertStadium();
+        this.selectedTeam.setValue(selectedTeam);
     }
 
     public int getStadium(){
         int id = mRepository.getStadium(1).getIdStadium();
         return id;
-    }
-
-    public Stadium getStadium(int id){
-        return mRepository.getStadium(id);
     }
 
 
@@ -87,9 +59,5 @@ public class FragmentsVM extends AndroidViewModel{
         return mTeams;
     }
 
-
-    public Team getFirstTeam(){
-        return  mRepository.getFirstTeam();
-    }
 
 }

@@ -1,7 +1,7 @@
 #Internal package file, do not edit.
-#Tue Feb 06 17:41:16 CET 2018
+#Wed Feb 07 13:19:59 CET 2018
 0.baseType=DIRECTORY
-0.base=/Users/rebecagonzalez/AndroidStudioProjects/Room/app/build/intermediates/transforms/dexMerger/debug/88
+0.base=/home/rsgonzalez/android/Android-MVVM-NBA/app/build/intermediates/transforms/dexMerger/debug/88
 0.path=classes.dex
 0.set=DEX
 count=1

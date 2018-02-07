@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +49,7 @@ public class MasterFragment extends Fragment implements AdapterView.OnItemClickL
 
         rootView = inflater.inflate(R.layout.fragment_master2, container, false);
 
-        mViewModel = ViewModelProviders.of(this).get(FragmentsVM.class);
+        mViewModel = ViewModelProviders.of((FragmentActivity) getActivity()).get(FragmentsVM.class);
         mList = (ListView)rootView.findViewById(R.id.lista);
 
         mList.setOnItemClickListener(this);
@@ -76,10 +77,7 @@ public class MasterFragment extends Fragment implements AdapterView.OnItemClickL
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
 
-        Toast.makeText(getContext(), "" + parent.getAdapter().getItem(position).toString(),
-                Toast.LENGTH_LONG).show();
         Team team = (Team) parent.getAdapter().getItem(position);
         mViewModel.setSelectedTeam(team);
 

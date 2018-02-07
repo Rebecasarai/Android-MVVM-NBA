@@ -30,13 +30,14 @@
             android:name=".Activities.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".Activities.FragmentsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
-        <activity android:name=".Activities.DetailsActivity"> <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+        <activity android:name=".Activities.DetailsActivity">
         </activity>
     </application>
 

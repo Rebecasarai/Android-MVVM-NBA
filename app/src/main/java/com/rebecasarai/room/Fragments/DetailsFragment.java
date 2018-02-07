@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rebecasarai.room.R;
 import com.rebecasarai.room.ViewModels.FragmentsVM;
@@ -26,8 +28,6 @@ import com.rebecasarai.room.models.Team;
 import java.util.List;
 
 public class DetailsFragment extends Fragment {
-
-
     FragmentsVM mViewModel;
     ListView mList;
     View rootView;
@@ -42,16 +42,16 @@ public class DetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_details, container, false);
-        mViewModel = ViewModelProviders.of(this).get(FragmentsVM.class);
-        mList = rootView.findViewById(R.id.lista);
-        edit1 = rootView.findViewById(R.id.edit1Fragment);
-        edit2 = rootView.findViewById(R.id.edit2Fragment);
+        mViewModel = ViewModelProviders.of((FragmentActivity) getActivity()).get(FragmentsVM.class);
+        edit1 = (EditText) rootView.findViewById(R.id.edit1Fragment);
+        edit2 = (EditText) rootView.findViewById(R.id.edit2Fragment);
 
-        mViewModel.setSelectedTeam(mViewModel.getFirstTeam());
-
-        mViewModel.getSelectedTeam().observe(this, new Observer<Team>() {
+        mViewModel.getSelectedTeam().observe(getActivity(), new Observer<Team>() {
                 @Override
                 public void onChanged(@Nullable Team team) {
+
+                    Toast.makeText(getContext(), "" + team.getName(),
+                            Toast.LENGTH_LONG).show();
                     edit1.setText(team.getName());
                     edit2.setText(team.getDescription());
                 }
