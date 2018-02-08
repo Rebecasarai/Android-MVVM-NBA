@@ -38,13 +38,14 @@
             android:name="com.rebecasarai.room.Activities.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name="com.rebecasarai.room.Activities.FragmentsActivity" >
+        </activity>
+        <activity android:name="com.rebecasarai.room.Activities.DetailsActivity" />
+        <activity android:name="com.rebecasarai.room.Activities.CustomTabbedActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name="com.rebecasarai.room.Activities.DetailsActivity" >
         </activity>
 
         <meta-data

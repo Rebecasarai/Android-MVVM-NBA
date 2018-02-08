@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.support.v4.app.Fragment;
 
 import com.rebecasarai.room.Repositories.MainActivityRepository;
 import com.rebecasarai.room.models.Stadium;
@@ -20,6 +21,7 @@ public class FragmentsVM extends AndroidViewModel{
     private MutableLiveData<Team> selectedTeam = new MutableLiveData<>();
     private String texto;
     private MainActivityRepository mRepository;
+    private Fragment mFragment;
 
     public FragmentsVM(Application application) {
         super(application);

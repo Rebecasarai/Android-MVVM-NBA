@@ -25,19 +25,20 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.SplashActivity"
-            android:theme="@style/SplashTheme"></activity>
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".Activities.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".Activities.FragmentsActivity">
+
+        </activity>
+        <activity android:name=".Activities.DetailsActivity"></activity>
+        <activity android:name=".Activities.CustomTabbedActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity android:name=".Activities.DetailsActivity">
         </activity>
     </application>
 

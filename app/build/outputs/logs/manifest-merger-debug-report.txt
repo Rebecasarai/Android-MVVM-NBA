@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-44:12
+ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-45:12
+INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-45:12
+INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-45:12
+INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-45:12
 MERGED from [com.basgeekball:awesome-validation:2.0] /home/rsgonzalez/.gradle/caches/transforms-1/files-1.1/awesome-validation-2.0.aar/169f21d58dbdbb09f0cddc01c4d5442b/AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:design:26.1.0] /home/rsgonzalez/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/2004089cdf372de769b4e9e74dddf962/AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:appcompat-v7:26.1.0] /home/rsgonzalez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/7fa6a0daf49360cce196e7969f695181/AndroidManifest.xml:17:1-31:12
@@ -24,20 +24,20 @@ MERGED from [android.arch.core:runtime:1.0.0] /home/rsgonzalez/.gradle/caches/tr
 MERGED from [android.arch.lifecycle:runtime:1.0.3] /home/rsgonzalez/.gradle/caches/transforms-1/files-1.1/runtime-1.0.3.aar/22e8f91f93d6b2733a22480da3146fe0/AndroidManifest.xml:17:1-24:12
 MERGED from [android.arch.persistence:db-framework:1.0.0] /home/rsgonzalez/.gradle/caches/transforms-1/files-1.1/db-framework-1.0.0.aar/558efbc46833f290b9dc2cbea144bbf0/AndroidManifest.xml:17:1-24:12
 MERGED from [android.arch.persistence:db:1.0.0] /home/rsgonzalez/.gradle/caches/transforms-1/files-1.1/db-1.0.0.aar/0c27bd8c3ac16c5ef4ef751c9adf4e01/AndroidManifest.xml:17:1-24:12
-INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-44:12
+INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-45:12
+INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-45:12
+INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-45:12
 	package
 		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:3:5-35
 		INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml
 		INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml
-		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-44:12
+		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-45:12
 		INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml
-		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-44:12
+		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:1-45:12
 		INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:2:11-69
@@ -54,7 +54,7 @@ ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifes
 	android:name
 		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:8:22-69
 application
-ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:10:5-42:19
+ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:10:5-43:19
 MERGED from [com.android.support:design:26.1.0] /home/rsgonzalez/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/2004089cdf372de769b4e9e74dddf962/AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:design:26.1.0] /home/rsgonzalez/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/2004089cdf372de769b4e9e74dddf962/AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:appcompat-v7:26.1.0] /home/rsgonzalez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/7fa6a0daf49360cce196e7969f695181/AndroidManifest.xml:25:5-29:19
@@ -116,7 +116,7 @@ ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifes
 	android:name
 		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:22:13-56
 activity#com.rebecasarai.room.Activities.SplashActivity
-ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:26:9-28:59
+ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:26:9-28:50
 	android:theme
 		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:28:13-47
 	android:name
@@ -128,23 +128,27 @@ ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifes
 	android:name
 		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:30:13-53
 activity#com.rebecasarai.room.Activities.FragmentsActivity
-ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:32:9-39:20
+ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:32:9-34:20
 	android:name
 		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:32:19-63
-intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:33:13-37:29
-action#android.intent.action.MAIN
-ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:34:17-69
-	android:name
-		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:34:25-66
-category#android.intent.category.LAUNCHER
-ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:36:17-77
-	android:name
-		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:36:27-74
 activity#com.rebecasarai.room.Activities.DetailsActivity
-ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:40:9-41:20
+ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:35:9-73
 	android:name
-		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:40:19-61
+		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:35:19-61
+activity#com.rebecasarai.room.Activities.CustomTabbedActivity
+ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:36:9-42:20
+	android:name
+		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:36:19-66
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:37:13-41:29
+action#android.intent.action.MAIN
+ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:38:17-69
+	android:name
+		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:38:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:40:17-77
+	android:name
+		ADDED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml:40:27-74
 uses-sdk
 INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/rsgonzalez/android/Android-MVVM-NBA/app/src/main/AndroidManifest.xml
