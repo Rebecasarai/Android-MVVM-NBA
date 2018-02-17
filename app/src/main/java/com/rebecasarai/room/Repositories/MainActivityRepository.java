@@ -27,6 +27,7 @@ public class MainActivityRepository {
         mTeamDao = db.teamDao();
         mStadiumDao = db.stadiumDao();
         mAllTeams = mTeamDao.getAllLive();
+
     }
 
     /**
@@ -109,12 +110,9 @@ public class MainActivityRepository {
      */
     public Stadium getStadium(int id){
 
-        /*getStadiumAsync n = new getStadiumAsync(mStadiumDao);
-        n.execute(id);*/
+        getStadium g = new getStadium(mStadiumDao);
+
         return  mStadiumDao.getStadium(id);
-        //getStadiumAsync n = new getStadiumAsync(id) ;
-        //return  new getStadiumAsync(mStadiumDao).execute(id);
-        //Stadium s = (Stadium) new getStadiumAsync(mStadiumDao).execute(id); // mStadiumDao.getStadium(id);
     }
 
     /**
@@ -242,7 +240,7 @@ public class MainActivityRepository {
 
     }
 
-    private static class getStadiumPrimeroAsync extends AsyncTask<Void, Void, Integer > {
+    private static class getStadiumPrimeroAsync extends AsyncTask<Void, Void, Integer> {
 
         private StadiumDao mStadiumDb;
         public Integer id;
@@ -254,12 +252,41 @@ public class MainActivityRepository {
         @Override
         protected Integer doInBackground(Void... voids) {
             //db.stadiumDao().insertStadium(params[0]);
-            id = mStadiumDb.getStadiumPimero().getIdStadium();
+
             return id;
         }
 
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+            id = mStadiumDb.getStadiumPimero().getIdStadium();
+        }
     }
 
+
+    private static class getStadium extends AsyncTask<Integer, Void, Stadium> {
+
+        private StadiumDao mStadiumDb;
+        private Stadium stadium;
+        public Integer id;
+
+        public getStadium(StadiumDao stadiumDb) {
+            mStadiumDb = stadiumDb;
+        }
+
+        @Override
+        protected Stadium doInBackground(Integer... integers) {
+
+            stadium = mStadiumDb.getStadium(integers[0]);
+            return stadium;
+        }
+
+        @Override
+        protected void onPostExecute(Stadium stadium) {
+            super.onPostExecute(stadium);
+
+        }
+    }
 
 
 
