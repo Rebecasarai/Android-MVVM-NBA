@@ -16,14 +16,14 @@ public class CustomTabbedActivity extends AppCompatActivity implements View.OnCl
 
     FragmentsVM mFragmentsVM;
     Button mBtnPrev, mBtnNext;
-
+    FragmentManager fragmentManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_tabbed);
         mFragmentsVM = ViewModelProviders.of(this).get(FragmentsVM.class);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         MasterFragment fragment = new MasterFragment();
         FragmentTransaction fragmentTransaccion = fragmentManager.beginTransaction();
         fragmentTransaccion.add(R.id.customTabbedLayout, fragment);
@@ -39,6 +39,7 @@ public class CustomTabbedActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
+
 
     }
 }

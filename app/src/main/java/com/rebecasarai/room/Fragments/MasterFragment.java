@@ -42,26 +42,17 @@ public class MasterFragment extends Fragment implements AdapterView.OnItemClickL
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         rootView = inflater.inflate(R.layout.fragment_master2, container, false);
-
-        mViewModel = ViewModelProviders.of((FragmentActivity) getActivity()).get(FragmentsVM.class);
         mList = (ListView)rootView.findViewById(R.id.lista);
-
         mList.setOnItemClickListener(this);
-
+        mViewModel = ViewModelProviders.of((FragmentActivity)getActivity()).get(FragmentsVM.class);
         mViewModel.getmTeams().observe(this, new Observer<List<Team>>() {
             @Override
             public void onChanged(@NonNull final List<Team> teams) {
-                for (int i = 0; i < teams.size(); i++) {
-                    Log.v("Team: ", teams.get(i).toString());
-                }
                 mTeamAdapater = new TeamAdapter(getContext(), mViewModel, teams);
-
                 mList.setAdapter(mTeamAdapater);
             }
         });
@@ -77,7 +68,6 @@ public class MasterFragment extends Fragment implements AdapterView.OnItemClickL
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
         Team team = (Team) parent.getAdapter().getItem(position);
         mViewModel.setSelectedTeam(team);
 

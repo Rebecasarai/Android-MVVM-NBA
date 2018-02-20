@@ -46,7 +46,7 @@ public class DetailsFragment extends Fragment {
         edit1 = (EditText) rootView.findViewById(R.id.edit1Fragment);
         edit2 = (EditText) rootView.findViewById(R.id.edit2Fragment);
 
-        mViewModel.getSelectedTeam().observe(getActivity(), new Observer<Team>() {
+        mViewModel.getSelectedTeam().observe((FragmentActivity)getActivity(), new Observer<Team>() {
                 @Override
                 public void onChanged(@Nullable Team team) {
 
